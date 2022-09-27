@@ -20,19 +20,9 @@ The requirements to follow the exercises in this repository are:
 
 Using SAPUI5 you can decide whether you would like to implement the application using TypeScript or JavaScript.<br>
 
-[![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)]()
-[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)]()
+[![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)](JavaScript/README.md)
+[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](TypeScript/README.md)
 
-[Getting Started](exercises/ex0/)<br>
-[Exercise 1 - Project Setup Using Business Application Studio](exercises/ex1/)<br>
-[Exercise 2 - Basic UI5 Configuration and  View Creation](exercises/ex2/)<br>
-[Exercise 3 - Show Sensor Content](exercises/ex3/)<br>
-[Exercise 4 - Introduce Localization](exercises/ex4/)<br>
-[Exercise 5 - Improve Visualization](exercises/ex5/)<br>
-[Exercise 6 - Filtering With the IconTabBar](exercises/ex6/)<br>
-[Exercise 7 - Fragment Containing a SelectDialog](exercises/ex7/)<br>
-[Exercise 8 - Second View with Navigation](exercises/ex8/)<br>
-[Exercise 9 - Card with NumericHeader](exercises/ex9/)
 ## How to obtain support
 Support for the content in this repository is available during the actual time of the online session for which this content has been designed. Otherwise, you may request support via the [Issues](../../issues) tab.
 ## License
