@@ -17,6 +17,12 @@ The requirements to follow the exercises in this repository are:
 - Be excited about the power of SAP technologies to make your developer life easier.
 
 ## Exercises
+
+Using SAPUI5 you can decide whether you would like to implement the application using TypeScript or JavaScript.<br>
+
+[![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)](https://google.com)
+[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://google.com)
+
 [Getting Started](exercises/ex0/)<br>
 [Exercise 1 - Project Setup Using Business Application Studio](exercises/ex1/)<br>
 [Exercise 2 - Basic UI5 Configuration and  View Creation](exercises/ex2/)<br>
