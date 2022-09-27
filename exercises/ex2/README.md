@@ -68,9 +68,30 @@ But for now we will keep the default as set to sap_horizon.
 
 ## Exercise 2.2 - Create Sensors.view.xml
 
-After completing these steps you'll have written your first UI5 view.
+After completing these steps you'll have written your first UI5 view. Before creating a new view, let's take a look at the precreated view App.view.xml located under `sensormanager/webapp/App.view.xml`.
+Replace the content as following:
 
-1. Right-click on the `sensormanager/webapp/view` folder and select `New File`.
+````xml
+<mvc:View
+    controllerName="keepcool.sensormanager.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content />
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
+````
+
+You just added an *App* control which has a *pages* aggregation. We will make use of this aggregation to add multiple pages for routing later on in this application.
+
+1. To add a new view, right-click on the `sensormanager/webapp/view` folder and select `New File`.
 <br><br>![](images/02_02_0010.png)<br><br>
 
 2. Enter `Sensors.view.xml` as file name and confirm.
