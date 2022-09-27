@@ -17,11 +17,16 @@ The requirements to follow the exercises in this repository are:
 - Be excited about the power of SAP technologies to make your developer life easier.
 
 ## Exercises
-- [Getting Started](exercises/ex0/)
-- [Exercise 1 - Project Setup Using Business Application Studio](exercises/ex1/)
-    - [Exercise 1.1 - Create a New UI5 Application](exercises/ex1#exercise-11---create-a-new-ui5-application)
-    - [Exercise 1.2 - Try out the generated Application](exercises/ex1#exercise-12---try-out-the-generated-application)
-
+[Getting Started](exercises/ex0/)<br>
+[Exercise 1 - Project Setup Using Business Application Studio](exercises/ex1/)<br>
+[Exercise 2 - Basic UI5 Configuration and  View Creation](exercises/ex2/)<br>
+[Exercise 3 - Show Sensor Content](exercises/ex3/)<br>
+[Exercise 4 - Introduce Localization](exercises/ex4/)<br>
+[Exercise 5 - Improve Visualization](exercises/ex5/)<br>
+[Exercise 6 - Filtering With the IconTabBar](exercises/ex6/)<br>
+[Exercise 7 - Fragment Containing a SelectDialog](exercises/ex7/)<br>
+[Exercise 8 - Second View with Navigation](exercises/ex8/)<br>
+[Exercise 9 - Card with NumericHeader](exercises/ex9/)
 ## How to obtain support
 Support for the content in this repository is available during the actual time of the online session for which this content has been designed. Otherwise, you may request support via the [Issues](../../issues) tab.
 ## License
