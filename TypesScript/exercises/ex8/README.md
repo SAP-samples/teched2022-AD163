@@ -69,16 +69,16 @@ After creating the new view, you'll next add routing information for it to the `
 
 Fine. You can access the newly created view. Next, you need to implement logic to navigate from your first view to the newly created one.
 
-1. Open `sensormanager/webapp/controller/Sensors.controller.js`.
+1. Open `sensormanager/webapp/controller/Sensors.controller.ts`.
 
 2. Create the function `navToSensorStatus`. Here, you get the index of the currently selected sensor and navigate to the new view by passing the index.
 
-***sensormanager/webapp/controller/Sensors.controller.js***
+***sensormanager/webapp/controller/Sensors.controller.ts***
 
 ````js
-            navToSensorStatus: function(oEvent) {
-                var iSensorIndex = oEvent.getSource().getBindingContext("sensorModel").getProperty("index");
-                this.getOwnerComponent().getRouter().navTo("RouteSensorStatus", {index: iSensorIndex});
+            navToSensorStatus(event: Event): void {
+                const sensorIndex = (event.getSource() as Control).getBindingContext("sensorModel")?.getProperty("index");
+                (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensorStatus", {index: sensorIndex});
             }
 ````
 
@@ -99,7 +99,7 @@ After implementing the navigation logic you'll need to assign it to a control, s
 3. Let's see if the navigation logic works. Switch to the browser tab with the opened application preview. In the URL, remove any content after `index.html`. Reload the page. Click any sensor. The navigation takes place, and you see the newly created view.
 <br><br>![](images/08_04_0010.png)<br><br>
 
-## Exercise 8.5 - Create SensorStatus.controller.js
+## Exercise 8.5 - Create SensorStatus.controller.ts
 Nice. Now let's implement the navigation back to `Sensors.view.xml`. To do this, you'll need a new controller for the newly created view.
 
 1. Go to folder `sensormanager/webapp/controller/`.
@@ -107,23 +107,25 @@ Nice. Now let's implement the navigation back to `Sensors.view.xml`. To do this,
 2. Right-click on the `controller` folder and select `New File`.
 <br><br>![](images/08_05_0010.png)<br><br>
 
-3. Enter `SensorStatus.controller.js` as file name.
+3. Enter `SensorStatus.controller.ts` as file name.
 <br><br>![](images/08_05_0020.png)<br><br>
 
-4. Copy and paste the controller definition given below into the newly created `SensorStatus.controller.js`.
+4. Copy and paste the controller definition given below into the newly created `SensorStatus.controller.ts`.
 
-***sensormanager/webapp/controller/SensorStatus.controller.js***
+***sensormanager/webapp/controller/SensorStatus.controller.ts***
 
 ````js
-sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function (Controller) {
-    "use strict";
+import Controller from "sap/ui/core/mvc/Controller";
 
-    return Controller.extend("keepcool.sensormanager.controller.SensorStatus", {
+/**
+ * @namespace keepcool.sensormanager.controller
+ */
+export default class SensorStatus extends Controller {
 
-    });
-});
+    public onInit(): void {
+
+    }
+}
 ````
 
 5. Open `sensormanager/webapp/view/SensorStatus.view.xml`.
@@ -142,15 +144,15 @@ sap.ui.define([
 
 Next you need to implement the navigation logic.
 
-1. Open `sensormanager/webapp/controller/SensorStatus.controller.js`.
+1. Open `sensormanager/webapp/controller/SensorStatus.controller.ts`.
 
 2. Add a `navToSensors` function, which uses the `navTo` method to navigate the `RouteSensors` route, which points to the `Sensors.view.xml` view.
 
-***sensormanager/webapp/controller/SensorStatus.controller.js***
+***sensormanager/webapp/controller/SensorStatus.controller.ts***
 
 ````js
 import Controller from "sap/ui/core/mvc/Controller";
-import Event from "sap/ui/base/Event";
+import Event from "sap/ui/base/Event"
 import UIComponent from "sap/ui/core/UIComponent";
 
 /**
@@ -162,7 +164,7 @@ export default class SensorStatus extends Controller {
 
     }
 
-    public navToSensors(event: Event): void {
+    navToSensors(event: Event): void {
         (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensors")
     }
         
