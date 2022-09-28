@@ -18,7 +18,7 @@ The requirements to follow the exercises in this repository are:
 
 ## Exercises
 
-Using SAPUI5 you can decide whether you would like to implement the application using TypeScript or JavaScript.<br>
+Using SAPUI5 you can decide whether you would like to implement the application using TypeScript or JavaScript, press on one of the below badges to go forward with your preferred programming language:<br>
 
 [![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)](JavaScript/README.md)
 [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](TypeScript/README.md)
