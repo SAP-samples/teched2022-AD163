@@ -16,3 +16,4 @@ Completing the following exercises will guide you through developing web applica
 Additional improvements for your application:<br>
 
 [Chart with DataBinding](exercises/ex10a/)
+[Develop your own Control](exercises/ex10b/)
