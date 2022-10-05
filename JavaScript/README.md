@@ -13,7 +13,7 @@ Completing the following exercises will guide you through developing web applica
 [Exercise 8 - Second View with Navigation](exercises/ex8/)<br>
 [Exercise 9 - Card with NumericHeader](exercises/ex9/)
 
-Already finished? Here are some additional improvements for the application, they are unrelated and can be done seperately in any order you prefer:<br>
+Already finished? Here are some additional improvements for the application, they are unrelated and can be done separately in any order you prefer:<br>
 
 [Exercise 10A - Replace the local JSON data with an OData service](exercises/ex10_A/)<br>
 [Exercise 10B  - Add a chart with DataBinding](exercises/ex10_B/)<br>
