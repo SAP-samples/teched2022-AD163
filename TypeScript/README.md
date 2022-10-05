@@ -13,7 +13,7 @@
 
 Already finished? Here are some additional improvements for the application, they are unrelated and can be done seperately in any order you prefer:<br>
 
-[Exercise 10A - Replace the local JSON data with an OData service](exercises/ex10d/)<br>
-[Exercise 10B  - Add a chart with DataBinding](exercises/ex10a/)<br>
-[Exercise 10C  - evelop your own Control](exercises/ex10b/)<br>
-[Exercise 10D  - Deployment to SAP BTP - Cloud Foundry runtime](exercises/ex10c/)
+[Exercise 10A - Replace the local JSON data with an OData service](exercises/ex10_A/)<br>
+[Exercise 10B  - Add a chart with DataBinding](exercises/ex10_B/)<br>
+[Exercise 10C  - evelop your own Control](exercises/ex10_C/)<br>
+[Exercise 10D  - Deployment to SAP BTP - Cloud Foundry runtime](exercises/ex10_D/)
