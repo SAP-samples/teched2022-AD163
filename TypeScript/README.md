@@ -10,3 +10,10 @@
 [Exercise 7 - Fragment Containing a SelectDialog](exercises/ex7/)<br>
 [Exercise 8 - Second View with Navigation](exercises/ex8/)<br>
 [Exercise 9 - Card with NumericHeader](exercises/ex9/)
+
+Already finished? Here are some additional improvements for the application, they are unrelated and can be done seperately in any order you prefer:<br>
+
+[Exercise 10A - Replace the local JSON data with an OData service](exercises/ex10d/)<br>
+[Exercise 10B  - Add a chart with DataBinding](exercises/ex10a/)<br>
+[Exercise 10C  - evelop your own Control](exercises/ex10b/)<br>
+[Exercise 10D  - Deployment to SAP BTP - Cloud Foundry runtime](exercises/ex10c/)
