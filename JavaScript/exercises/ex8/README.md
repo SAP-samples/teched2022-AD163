@@ -149,24 +149,17 @@ Next you need to implement the navigation logic.
 ***sensormanager/webapp/controller/SensorStatus.controller.js***
 
 ````js
-import Controller from "sap/ui/core/mvc/Controller";
-import Event from "sap/ui/base/Event";
-import UIComponent from "sap/ui/core/UIComponent";
+sap.ui.define([
+    "sap/ui/core/mvc/Controller"
+], function (Controller) {
+    "use strict";
 
-/**
- * @namespace keepcool.sensormanager.controller
- */
-export default class SensorStatus extends Controller {
-
-    public onInit(): void {
-
-    }
-
-    public navToSensors(event: Event): void {
-        (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensors")
-    }
-        
-}
+    return Controller.extend("keepcool.sensormanager.controller.SensorStatus", {
+        navToSensors: function () {
+            this.getOwnerComponent().getRouter().navTo("RouteSensors");
+        }
+    });
+});
 
 ````
 
