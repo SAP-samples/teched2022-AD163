@@ -47,16 +47,15 @@ In the previous section you've added all necessary controls. Next, you'll implem
 
     onSensorSelect(event: Event): void {
 
-        var oBinding = this.getView()?.byId("sensorsList")?.getBinding("items"),
-            sKey = event.getParameter("key"),
-            oThreshold = this.getSensorModel().getProperty("/threshold");
+        const oBinding = this.getView()?.byId("sensorsList")?.getBinding("items");
+        const sKey = (event.getParameter("key") as string);
 
         if (sKey === "Cold") {
-            this.statusFilters = [new Filter("temperature/value", "LT", oThreshold.warm, false)];
+            this.statusFilters = [new Filter("temperature", "LT", Threshold.warm, false)];
         } else if (sKey === "Warm") {
-            this.statusFilters = [new Filter("temperature/value", "BT", oThreshold.warm, oThreshold.hot)];
+            this.statusFilters = [new Filter("temperature", "BT", Threshold.warm, Threshold.hot)];
         } else if (sKey === "Hot") {
-            this.statusFilters = [new Filter("temperature/value", "GT", oThreshold.hot, false)];
+            this.statusFilters = [new Filter("temperature", "GT", Threshold.hot, false)];
         } else {
             this.statusFilters = [];
         }
@@ -66,6 +65,14 @@ In the previous section you've added all necessary controls. Next, you'll implem
 ````
 
 You can again make use of the *quickfix* functionality on hover to add the missing import modules.
+
+Knowledge about the DOM types like Event is built-in to TypeScript (note: there is no import in the file for the "Event" type so far!). Due to the name equality, TypeScript assumes the DOM Event class is meant. This is something to keep in mind when dealing with types which have very generic and common names.
+
+You can simply override by explicitly importing the UI5 Event class. Add the following line to the beginning of the file to get rid of the error:
+
+````js
+import Event from "sap/ui/base/Event";
+````
 
 ## Exercise 6.3 - Assign the Filtering to the IconTabBar
 
