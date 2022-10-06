@@ -11,37 +11,40 @@ In this exercise you'll create your own UI5 custom control. Although the color o
 
 2. Right-click on this newly created `sensormanager/webapp/control` folder and select `New File`. Enter "Thermometer.js" as file name and confirm.
 
-3. Add the following thermometer control code as content of the newly created `Thermometer.js` file. The control just renders a simple `div` element which contains the temperature value as text. This will be enhanced later.
+3. Add the following thermometer control code as content of the newly created `Thermometer.ts` file. The control just renders a simple `div` element which contains the temperature value as text. This will be enhanced later.
 
 ***sensormanager/webapp/control/Thermometer.js***
 
 ````js
-sap.ui.define([
-	"sap/ui/core/Control"
-], function (Control) {
-	"use strict";
-	return Control.extend("keepcool.sensormanager.control.Thermometer", {
-		metadata : {
-			properties : {
-				value: {type : "float", defaultValue : 0},
-				color: {type : "string"}
-			}
-		},
+import UI5Control from "sap/ui/core/Control";
+import RenderManager from "sap/ui/core/RenderManager";
 
-		renderer : {
-			apiVersion : 2,
-			render : function (oRM, oControl) {
-				if (oControl.getValue()){
-					oRM.openStart("div", oControl);
-					oRM.class("thermometer-control");
-					oRM.openEnd();
-					oRM.text(oControl.getValue());
-					oRM.close("div");
-				}
+/**
+ * @name keepcool.sensormanager.control.Thermometer
+ */
+export default class Thermometer extends UI5Control {
+	static readonly metadata = {
+		properties: {
+			label: "string",
+			value: "float"
+		}
+      
+	}
+
+	renderer = {
+		apiVersion : 2,
+		render: (rm: RenderManager, control: Thermometer) => {
+			if (control.getValue()) {
+				rm.openStart("div", control);
+				rm.class("thermometer-control");
+				rm.openEnd();
+				rm.text(control.getValue());
+				rm.close("div");
+			
 			}
 		}
-	});
-});
+	}
+}
 ````
 
 4. Open `sensormanager/css/style.css`.
@@ -91,13 +94,13 @@ sap.ui.define([
     </VBox>
 
     <cc:Thermometer
-      value="{sensorModel>temperature/value}"
-      color="{path: 'sensorModel>temperature/value', formatter:'.formatThermometerColor'}"
+      value="{sensorModel>temperature}"
+      color="{path: 'sensorModel>temperature', formatter:'.formatThermometerColor'}"
       class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
 
     <!--core:Icon
       src="sap-icon://temperature"
-      color="{path: 'sensorModel>temperature/value', formatter:'.formatIconColor'}"
+      color="{path: 'sensorModel>temperature', formatter:'.formatIconColor'}"
       size="2.5rem"
       class="sapUiSmallMarginTop sapUiSmallMarginEnd"/-->
   </HBox>
@@ -108,13 +111,12 @@ sap.ui.define([
 ***sensormanager/webapp/controller/Sensors.controller.xml***
 
 ````js
-            formatThermometerColor: function(iTemperature) {
-                var oThreshold = this.getSensorModel().getProperty("/threshold");
-                if (!oThreshold) {
+            formatThermometerColor(temperature: number) {
+                if (!Threshold) {
                     return "black";
-                } else if (iTemperature < oThreshold.warm) {
+                } else if (temperature < Threshold.warm) {
                     return "#1873B4"; // less obtrusive than the standard "blue"
-                } else if (iTemperature >= oThreshold.warm && iTemperature < oThreshold.hot) {
+                } else if (temperature >= Threshold.warm && temperature < Threshold.hot) {
                     return "orange";
                 } else {
                     return "red";
@@ -140,31 +142,31 @@ Now you want to create a nice looking thermometer, which displays not only the t
 ***sensormanager/webapp/control/Thermometer.js***
 
 ````js
-        renderer : {
+        renderer = {
             apiVersion : 2,
-            render : function (oRM, oControl) {
-                oRM.openStart("figure", oControl);
-                oRM.class("thermometer");
-                oRM.style("border", "2px solid " + oControl.getColor());
-                oRM.openEnd();
+            render: (rm: RenderManager, control: Thermometer) => {
+                rm.openStart("figure", control);
+                rm.class("thermometer");
+                rm.style("border", "2px solid " + control.getColor());
+                rm.openEnd();
 
-                    oRM.openStart("figcaption");
-                    oRM.class("thermometer-value");
-                    oRM.style("background-color", oControl.getColor());
-                    oRM.style("box-shadow", "0 0 0 2px " + oControl.getColor());
-                    oRM.openEnd();
-                    oRM.text(oControl.getValue().toFixed(1)); // the temperature value
-                    oRM.close("figcaption");
+                rm.openStart("figcaption");
+                rm.class("thermometer-value");
+                rm.style("background-color", control.getColor());
+                rm.style("box-shadow", "0 0 0 2px " + control.getColor());
+                rm.openEnd();
+                rm.text(control.getValue().toFixed(1)); // the temperature value
+                rm.close("figcaption");
 
-                    oRM.openStart("div");
-                    oRM.class("thermometer-level");
-                    var temperatureHeight = Math.min(oControl.getValue() * 7, 50) + 5; // values should range from 5 to 55
-                    oRM.style("height", temperatureHeight + "px");
-                    oRM.style("background-color", oControl.getColor());
-                    oRM.openEnd();
-                    oRM.close("div");
+                rm.openStart("div");
+                rm.class("thermometer-level");
+                var temperatureHeight = Math.min(control.getValue() * 7, 50) + 5; // values should range from 5 to 55
+                rm.style("height", temperatureHeight + "px");
+                rm.style("background-color", control.getColor());
+                rm.openEnd();
+                rm.close("div");
 
-                oRM.close("figure");
+                rm.close("figure");
             }
         }
 ````
