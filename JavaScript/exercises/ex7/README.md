@@ -163,15 +163,14 @@ After providing an option to select preferred customers, you also need to add th
 ````js
             onSensorSelect: function (oEvent) {
                 var oBinding = this.getView().byId("sensorsList").getBinding("items"),
-                    sKey = oEvent.getParameter("key"),
-                    oThreshold = this.getSensorModel().getProperty("/threshold");
+                    sKey = oEvent.getParameter("key")
 
                 if (sKey === "Cold") {
-                    this._aStatusFilters = [new Filter("temperature/value", "LT", oThreshold.warm, false)];
+                    this._aStatusFilters = [new Filter("temperature", "LT", this.oThreshold.warm, false)];
                 } else if (sKey === "Warm") {
-                    this._aStatusFilters = [new Filter("temperature/value", "BT", oThreshold.warm, oThreshold.hot, false)];
+                    this._aStatusFilters = [new Filter("temperature", "BT", this.oThreshold.warm, this.oThreshold.hot, false)];
                 } else if (sKey === "Hot") {
-                    this._aStatusFilters = [new Filter("temperature/value", "GT", oThreshold.hot, false)];
+                    this._aStatusFilters = [new Filter("temperature", "GT", this.oThreshold.hot, false)];
                 } else {
                     this._aStatusFilters = [];
                 }
