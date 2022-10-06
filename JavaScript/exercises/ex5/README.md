@@ -107,11 +107,13 @@ sap.ui.define([
 
 ````js
             onInit: function() {
-                this.getSensorModel().dataLoaded().then(function() {
-                    MessageToast.show(
-                        this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("msgSensorDataLoaded"),
-                        { closeOnBrowserNavigation: false });
-                }.bind(this));
+                if (this.getSensorModel().isA("sap.ui.model.json.JSONModel")){
+                    this.getSensorModel().dataLoaded().then(function() {
+                        MessageToast.show(
+                            this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("msgSensorDataLoaded"),
+                            { closeOnBrowserNavigation: false });
+                    }.bind(this));
+                }
             },
             getSensorModel: function(){
                 return this.getOwnerComponent().getModel("sensorModel");
@@ -154,13 +156,18 @@ Your next goal is to bring some color to the user interface. You'd like to displ
 ***sensormanager/webapp/controller/Sensors.controller.js***
 
 ````js
+            oThreshold: {
+                warm: 4,
+                hot: 5
+            },
+
             formatIconColor: function(iTemperature) {
-                var oThreshold = this.getSensorModel().getProperty("/threshold");
-                if (!oThreshold) {
+                
+                if (!this.oThreshold) {
                     return IconColor.Neutral;
-                } else if (iTemperature < oThreshold.warm) {
+                } else if (iTemperature < this.oThreshold.warm) {
                     return IconColor.Default;
-                } else if (iTemperature >= oThreshold.warm && iTemperature < oThreshold.hot) {
+                } else if (iTemperature >= this.oThreshold.warm && iTemperature < this.oThreshold.hot) {
                     return IconColor.Critical;
                 } else {
                     return IconColor.Negative;
@@ -176,7 +183,7 @@ You're almost done. The last piece is adding the newly created formatter functio
 
 1. Open `sensormanager/webapp/view/Sensors.view.xml`.
 
-2. Add the `color` property to the `sap.ui.core.Icon` definition, bind the `color` property to the path `sensors>temperature/value`, and assign the formatter function to the binding.
+2. Add the `color` property to the `sap.ui.core.Icon` definition, bind the `color` property to the path `sensors>temperature`, and assign the formatter function to the binding.
 
 ***sensormanager/webapp/view/Sensors.view.xml***
 
@@ -184,7 +191,7 @@ You're almost done. The last piece is adding the newly created formatter functio
                                     <core:Icon
                                         src="sap-icon://temperature"
                                         size="2.5rem"
-                                        color="{path: 'sensorModel>temperature/value', formatter:'.formatIconColor'}"
+                                        color="{path: 'sensorModel>temperature', formatter:'.formatIconColor'}"
                                         class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
 ````
 
