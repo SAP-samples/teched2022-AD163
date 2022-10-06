@@ -122,6 +122,19 @@ In addition the according *sensormodel* created in ex3 consuming the *sensorSour
 }
 ```
 
+In addition, we need to provide the *customer* property as parameter in the binding since it's not part of any property binding and only necessary fields are requested by the OData model.
+To do that, open *Sensors.view.xml* and replace the binding in the *GridList* control as following:
+
+```xml
+<f:GridList
+    id="sensorsList"
+    items="{path: 'sensorModel>/sensors', parameters : {
+        $select : 'customer'
+        },sorter: {path:'customer', group:true, descending: false}}"
+    noDataText="{i18n>noSensorDataText}">
+```
+
+
 You can now delete the json data added in exercise 3 by deleting the *sensors.json* file in the *localService* folder. Refresh your application, the application is now running on the service that has just been implemented. By opening the dev tools in the chrome browser by pressing *F12* you can switch to the *Network* tab. Notice that whenever a new filtering or selection has been triggered, a new *batch* request can be observed triggered by the odata model to the *SensorService*.
 
 This service can now be enhanced with new fields, annotations to be consumed by complex applications and connected to a database - great! Your application is now running on an OData service.
