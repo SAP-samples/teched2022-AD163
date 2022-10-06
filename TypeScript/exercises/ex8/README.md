@@ -161,7 +161,7 @@ import UIComponent from "sap/ui/core/UIComponent";
 export default class SensorStatus extends Controller {
 
     public onInit(): void {
-
+        //
     }
 
     navToSensors(event: Event): void {

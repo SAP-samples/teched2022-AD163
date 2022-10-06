@@ -52,7 +52,7 @@ After creating the dialog, you need to implement the coding to open the dialog.
                 private dialog: Promise<SelectDialog>;
 
                 onCustomerSelect(): void{
-                    if(!this.dialog) {
+                    if(!(this.dialog instanceof Promise)) {
 
                         const sensorModel = this.getSensorModel();
                         const resourceModel = this.getView()?.getModel("i18n") as ResourceModel;
@@ -72,7 +72,9 @@ After creating the dialog, you need to implement the coding to open the dialog.
 
                     this.dialog.then(function(oDialog){
                         oDialog.open("");
-                    });
+                    }).catch(function(oErr: Error){
+                        MessageToast.show(oErr.message);
+                    })
                 }
 
 ````
@@ -111,7 +113,7 @@ For this, you need to implement the filter logic.
 
 ````js
             onCustomerSelectChange(event: Event): void {
-                const sValue = event.getParameter("value");
+                const sValue = (event.getParameter("value") as string);
                 const oFilter = new Filter("name", "Contains", sValue);
                 const oBinding = (event.getSource() as Control).getBinding("items");
                 (oBinding as ListBinding).filter([oFilter]);
