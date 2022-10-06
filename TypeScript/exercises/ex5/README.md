@@ -101,7 +101,9 @@ Depending on the used code editor, you can also navigate to the definition of th
             const resourceModel = (ownerComp?.getModel("i18n") as ResourceModel);
             const resourceBundle = (resourceModel.getResourceBundle() as ResourceBundle);
             MessageToast.show(resourceBundle.getText("msgSensorDataLoaded"), { closeOnBrowserNavigation: false });
-        }.bind(this));
+        }.bind(this)).catch(function(oErr: Error){
+            MessageToast.show(oErr.message, { closeOnBrowserNavigation: false });
+        });
     }
 
     public getSensorModel(): JSONModel {
@@ -151,22 +153,57 @@ Your next goal is to bring some color to the user interface. You'd like to displ
 ***sensormanager/webapp/controller/Sensors.controller.ts***
 
 ````js
-            formatIconColor(temperature: number): IconColor {
-                var oThreshold = this.getSensorModel().getProperty("/threshold");
-                if (!oThreshold) {
-                    return IconColor.Neutral;
-                } else if (temperature < oThreshold.warm) {
-                    return IconColor.Default;
-                } else if (temperature >= oThreshold.warm && temperature < oThreshold.hot) {
-                    return IconColor.Critical;
-                } else {
-                    return IconColor.Negative;
-                }
-            }
+import Controller from "sap/ui/core/mvc/Controller";
+import MessageToast from "sap/m/MessageToast";
+import ResourceBundle from "sap/base/i18n/ResourceBundle";
+import JSONModel from "sap/ui/model/json/JSONModel";
+import ResourceModel from "sap/ui/model/resource/ResourceModel";
+import { IconColor } from "sap/ui/core/library";
+
+enum Threshold {
+    warm = 4,
+    hot = 5
+}
+
+/**
+ * @namespace keepcool.sensormanager.controller
+ */
+export default class Sensors extends Controller {
+
+    public onInit(): void {
+        const ownerComp = this.getOwnerComponent();
+        this.getSensorModel().dataLoaded().then(function() {
+            const resourceModel = (ownerComp?.getModel("i18n") as ResourceModel);
+            const resourceBundle = (resourceModel.getResourceBundle() as ResourceBundle);
+            MessageToast.show(resourceBundle.getText("msgSensorDataLoaded"), { closeOnBrowserNavigation: false });
+        }.bind(this)).catch(function(oErr: Error){
+            MessageToast.show(oErr.message, { closeOnBrowserNavigation: false });
+        });
+    }
+
+    public getSensorModel(): JSONModel {
+        const ownerComp = this.getOwnerComponent();
+        const oModel = (ownerComp?.getModel("sensorModel") as JSONModel);
+        return oModel;
+    }
+
+    formatIconColor(temperature: number): IconColor {
+        if (!Threshold) {
+            return IconColor.Neutral;
+        } else if (temperature < Threshold.warm) {
+            return IconColor.Default;
+        } else if (temperature >= Threshold.warm && temperature < Threshold.hot) {
+            return IconColor.Critical;
+        } else {
+            return IconColor.Negative;
+        }
+    }
+}
 
 ````
 
-You can observe that TypeScript allows to specifiy the type of the *temperature* parameter. There is also the possibility to define *IconColor* as return type.
+You can observe that TypeScript allows to specifiy the type of the *temperature* parameter. In addition TypeScript allows us to specify a type definition for the function. In this case the *IconColor* as return type.
+Another advantage of TypeScript are enums. The theshold enum can be used to specifiy certain types of temperature status for the sensor in this example.
 
 ## Exercise 5.5 - Add the Formatter in your View
 
@@ -182,7 +219,7 @@ You're almost done. The last piece is adding the newly created formatter functio
                                     <core:Icon
                                         src="sap-icon://temperature"
                                         size="2.5rem"
-                                        color="{path: 'sensorModel>temperature/value', formatter:'.formatIconColor'}"
+                                        color="{path: 'sensorModel>temperature', formatter:'.formatIconColor'}"
                                         class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
 ````
 
