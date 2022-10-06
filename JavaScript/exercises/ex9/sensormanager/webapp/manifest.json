@@ -1,0 +1,123 @@
+{
+    "_version": "1.45.0",
+    "sap.app": {
+        "id": "keepcool.sensormanager",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.7.5",
+            "toolsId": "f2956fa1-518e-418e-8af4-a6c8441f9541"
+        },
+        "dataSources": {
+            "sensorSource": {
+                "type": "JSON",
+                "uri": "./localService/sensors.json"
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.106.1",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.m": {},
+                "sap.f": {},
+                "sap.suite.ui.microchart": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "keepcool.sensormanager.i18n.i18n",
+                    "supportedLocales": ["de", "en"],
+                    "fallbackLocale": "en"
+                }
+            },
+            "sensorModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "sensorSource"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "transition": "slide",
+                "viewPath": "keepcool.sensormanager.view",
+                "controlAggregation": "pages",
+                "controlId": "app"
+            },
+            "routes": [{
+                "name": "RouteSensors",
+                "pattern": "",
+                "target": ["TargetSensors"]
+            },{
+                "name": "RouteSensorStatus",
+                "pattern": "sensor/{index}",
+                "target": ["TargetSensorStatus"]
+            }],
+            "targets": {
+                "TargetSensors": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Sensors",
+                    "viewName": "Sensors"
+                },
+                "TargetSensorStatus": {
+                    "viewId": "sensorStatus",
+                    "viewName": "SensorStatus",
+                    "viewLevel": 2
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "keepcool.sensormanager.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "keepcool-sensormanager"
+    }
+}

@@ -60,34 +60,33 @@ To be able to show the data in your card, you need to assign the correct binding
 ***sensormanager/webapp/controller/SensorStatus.controller.js***
 
 ````js
-import Controller from "sap/ui/core/mvc/Controller";
-import Event from "sap/ui/base/Event";
-import UIComponent from "sap/ui/core/UIComponent";
-import formatMessage from "sap/base/strings/formatMessage"
+sap.ui.define([
+    "sap/ui/core/mvc/Controller",
+    "sap/base/strings/formatMessage"
+], function (Controller, formatMessage) {
+    "use strict";
 
-/**
- * @namespace keepcool.sensormanager.controller
- */
-export default class SensorStatus extends Controller {
+    return Controller.extend("keepcool.sensormanager.controller.SensorStatus", {
 
-    formatMessage = formatMessage;
+        formatMessage: formatMessage,
 
-    public onInit(): void {
-        (this.getOwnerComponent() as UIComponent).getRouter().getRoute("RouteSensorStatus")?.attachMatched(this.onRouteMatched, this);
-    }
+        onInit: function () {
+            this.getOwnerComponent().getRouter().getRoute("RouteSensorStatus").attachMatched(this.onRouteMatched, this);
+        },
 
-    public onRouteMatched(event: Event): void {
-        this.getView()?.bindElement({
-            path: "/sensors/" + event.getParameter("arguments").index,
-            model: "sensorModel"
-        });
-    }
+        onRouteMatched: function (oEvent) {
+            this.getView().bindElement({
+                path: "/sensors/" + oEvent.getParameter("arguments").index,
+                model: "sensorModel"
+            });
+        },
 
-    public navToSensors(event: Event): void {
-        (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensors")
-    }
-        
-}
+        navToSensors: function () {
+            this.getOwnerComponent().getRouter().navTo("RouteSensors");
+        }
+
+    });
+});
 ````
 
 3. Switch to the browser tab where the application preview is opened. Click any sensor. Now the sensor status page contains a card with the customer name.
@@ -113,7 +112,7 @@ To improve the visualization further, you will replace the `sap.f.card.Header` b
                         'sensorModel>distance',
                         'i18n>distanceUnit'],
                         formatter: '.formatMessage'}"
-                        number="{sensorModel>temperature/value}"
+                        number="{sensorModel>temperature}"
                         scale="{i18n>temperatureUnit}"/>
                 </f:header>
 ````
@@ -138,16 +137,20 @@ sap.ui.define([
 and
 
 ````js
-    formatValueColor(threshold: any, temperature: Number) {
-        threshold = threshold || {};
-        if (temperature < threshold.warm) {
-            return ValueColor.Neutral;
-        } else if (temperature >= threshold.warm && temperature < threshold.hot) {
-            return ValueColor.Critical;
-        } else {
-            return ValueColor.Error;
+        oThreshold: {
+            warm: 4,
+            hot: 5
+        },
+
+        formatValueColor: function (iTemperature) {
+            if (iTemperature < this.oThreshold.warm) {
+                return ValueColor.Neutral;
+            } else if (iTemperature >= this.oThreshold.warm && iTemperature < this.oThreshold.hot) {
+                return ValueColor.Critical;
+            } else {
+                return ValueColor.Error;
+            }
         }
-    }
 ````
 
 4. The `sap.f.cards.NumericHeader` control provides a `state` property, which allows you to render the state of your control in a fancy way. Open `sensormanager/webapp/view/SensorStatus.view.xml`.
@@ -168,11 +171,11 @@ and
                         'sensorModel>distance',
                         'i18n>distanceUnit'],
                         formatter: '.formatMessage'}"
-                        number="{sensorModel>temperature/value}"
+                        number="{sensorModel>temperature}"
                         scale="{i18n>temperatureUnit}"
                         state="{parts: [
-                            'sensorModel>/threshold',
-                            'sensorModel>temperature/value'],
+                            'sensorModel>temperature'
+                            ],
                             formatter: '.formatValueColor'}"/>
                 </f:header>
 ````
