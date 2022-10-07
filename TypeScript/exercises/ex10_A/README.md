@@ -4,6 +4,8 @@ In exercise 3 of this workshop a *JSONModel* has been added to the sensormanager
 
 ## Exercise 1 - Create a new CAP project
 
+Before creating the new project, save the UI5 application, rightlick in your workspace and select *download* to save the compressed project files for later import.
+
 First, select the *Help* button in the upper toolbar in BAS to select *Welcome*, this will open the welcome page again and provide the options to create a new application template.
 <br><br>![](images/11d_01.png)<br><br>
 Similar as in the beginning of creating the application template, select: *Start from template*, but this time select *CAP Project* as template.
@@ -86,7 +88,7 @@ Once this is setup, go to your run configurations and restart the project - once
 
 ## Exercise 3 - Add a frontend to the project
 
-Since the service is ready to be consumed, import the *Sensor Manager* application created earlier into the project. In the *File* menu in the upper left corner in BAS, you can reselect the sensor manager fiori project created earlier - once the fiori project has been selected, select *Download* in the *File* menu in BAS. Switch back in the *File* menu by opening the just created CAP project. In the *app* folder, rightclick and select *import*. The downloaded archive can be added to the project, the webapp folder should be placed in the *app* folder of the CAP project:
+Since the service is ready to be consumed, import the *Sensor Manager* application created earlier into the project. In the *app* folder, rightclick and select *import*. The downloaded UI5 app archive can be added to the project, the *sensormanager* folder should be placed in the *app* folder of the CAP project:
 <br><br>![](images/11d_08.png)<br><br>
 Restart the run configuration again. There is now an application available in the project.
 
