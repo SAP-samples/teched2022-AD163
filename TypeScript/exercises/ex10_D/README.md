@@ -1,10 +1,10 @@
 [![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex11)
 
-# Exercise 11 - Deploy Your App to SAP BTP, Cloud Foundry runtime
+# Exercise 10D - Deploy Your App to SAP BTP, Cloud Foundry runtime
 
 In this exercise you'll learn how easy it is to deploy your application directly from SAP Business Application Studio to the SAP BTP, Cloud Foundry runtime.
 
-## Exercise 11.1 - Create Space in Cloud Foundry
+## Exercise 10D.1 - Create Space in Cloud Foundry
 
 First of all, you need to create the space in your Cloud Foundry environment to host your newly created UI5 application.
 
@@ -23,7 +23,7 @@ First of all, you need to create the space in your Cloud Foundry environment to 
 5. The newly created space is displayed.
 <br><br>![](images/11_01_0050.png)<br><br>
 
-## Exercise 11.2 - Subscribe to Launchpad Service
+## Exercise 10D.2 - Subscribe to Launchpad Service
 
 To be able to display deployed UI5 applications we need the Launchpad Service in our trial account.
 1. To subscribe to it, click on *Service Marketplace* and search the Launchpad Service.
@@ -34,7 +34,7 @@ To be able to display deployed UI5 applications we need the Launchpad Service in
 <br><br>![](images/11_02_0070.png)<br><br>
 
 If you now click on *Instance and Subscriptions* you'll see that you have subscribed to the Launchpad Servcice.
-## Exercise 11.3 - Login to Cloud Foundry
+## Exercise 10D.3 - Login to Cloud Foundry
 
 Now you can login to your Cloud Foundry environment directly from SAP Business Application Studio.
 
@@ -44,14 +44,14 @@ Now you can login to your Cloud Foundry environment directly from SAP Business A
 Now specify the user credentials:
 <br><br>![](images/11_02_0020.png)<br><br>
 
-## Exercise 11.4 - Set Organization and Space
+## Exercise 10D.4 - Set Organization and Space
 
 After logging in you're asked to specify your desired Cloud Foundry organization and space:
 
 <br><br>![](images/11_04_0010.png)<br><br>
 
 
-## Exercise 11.5 - Configure Your UI5 Application
+## Exercise 10D.5 - Configure Your UI5 Application
 
 Since you created your app using one of the application templates available in SAP Business Application Studio, all files which are located under `sensormanager/test/` and `sensormanager/localService/` are excluded from any build, because in a productive application these files are usually not needed. In our case the sensor data is placed in a local JSON file, so the `sensors.json` file needs to be included in the build.
 
@@ -68,7 +68,7 @@ builder:
       - "/test/**"
 ````
 
-## Exercise 11.6 - Build Your Application
+## Exercise 10D.6 - Build Your Application
 
 Now it's time to build your application. Yeah!
 
@@ -83,7 +83,7 @@ Now it's time to build your application. Yeah!
 <br><br>![](images/11_06_0020.png)<br><br>
 
 
-## Exercise 11.7 - Deploy Your Application
+## Exercise 10D.7 - Deploy Your Application
 
 The build step has created a file named `TechEd2020_0.0.1.mtar` located under `mta_archives`. This file contains your build.
 
@@ -103,6 +103,6 @@ The build step has created a file named `TechEd2020_0.0.1.mtar` located under `m
 
 ## Summary
 
-Hooray! You've completed successfully [Exercise 11 - Deployment to SAP BTP, Cloud Foundry runtime](../ex11/README.md). But this is not the end yet:
+Hooray! You've completed successfully [Exercise 10D - Deployment to SAP BTP, Cloud Foundry runtime](../ex11/README.md). But this is not the end yet:
 
 Let's take a look at the additional exercises [Additional exercises](../../)

@@ -1,11 +1,11 @@
 [![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex10)
 [![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/ex10/sensormanager/webapp/)
 
-# Exercise 10 - Chart with Data Binding
+# Exercise 10B - Chart with Data Binding
 
 In this exercise you'll add some analytical flavor to your UI5 application by using a chart.
 
-## Exercise 10.1 - Create the Chart
+## Exercise 10B.1 - Create the Chart
 
 To show some historical data you can use the `temperatureLog` of the sensor data. You'll use an `sap.suite.ui.microchart.InteractiveLineChart`to add the data points.
 
@@ -50,7 +50,7 @@ To show some historical data you can use the `temperatureLog` of the sensor data
 4. Switch to the browser tab where the application preview is opened. Click any sensor. Now the sensor status page contains a chart with a temperature history.
 <br><br>![](images/10_01_0010.png)<br><br>
 
-## Exercise 10.2 - Master the Chart
+## Exercise 10B.2 - Master the Chart
 
 After completing the previous exercises, you are quite experienced in enhancing your UI5 application. Master your chart to show what you've learned.
 
@@ -119,7 +119,7 @@ After completing the previous exercises, you are quite experienced in enhancing 
 
 ## Summary
 
-Congratulations, you've completed successfully [Exercise 10 - Chart with DataBinding](#exercise-10---chart-with-databinding)!
+Congratulations, you've completed successfully [Exercise 10B - Chart with DataBinding](#exercise-10---chart-with-databinding)!
 
 Let's take a look at the additional exercises [Additional exercises](../../)
 

@@ -1,11 +1,11 @@
 [![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex12)
 [![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/ex12/sensormanager/webapp/)
 
-# Exercise 12 - Develop your own Control
+# Exercise 10C - Develop your own Control
 
 In this exercise you'll create your own UI5 custom control. Although the color of the thermometer icons shows already the general state in the main page, we want to see the temperature value and the temperature level also displayed graphically. Therefore we create a thermometer control which displays the temperatur with the color and the height of the scale directly.
 
-## Exercise 12.1 - Create the Custom Control Code
+## Exercise 10C.1 - Create the Custom Control Code
 
 1. Right-click on the `sensormanager/webapp` folder and select `New Folder`. Enter "control" as folder name and confirm.
 
@@ -25,7 +25,7 @@ import RenderManager from "sap/ui/core/RenderManager";
 export default class Thermometer extends UI5Control {
 	static readonly metadata = {
 		properties: {
-			label: "string",
+			color: "string",
 			value: "float"
 		}
       
@@ -129,7 +129,7 @@ export default class Thermometer extends UI5Control {
 <br><br>![](images/12_01_0010.png)<br><br>
 
 
-## Exercise 12.2 - Beautify your Thermometer Control
+## Exercise 10C.2 - Beautify your Thermometer Control
 
 Now you want to create a nice looking thermometer, which displays not only the temperature value as number but also using the height of the thermometer scale - with colors.
 
@@ -221,7 +221,7 @@ Now you want to create a nice looking thermometer, which displays not only the t
 
 ## Summary
 
-Hooray! You've successfully completed [Exercise 12 - Develop your own Control](../ex12/README.md).
+Hooray! You've successfully completed [Exercise 10C - Develop your own Control](../ex12/README.md).
 
 Let's take a look at the additional exercises [Additional exercises](../../)
 
