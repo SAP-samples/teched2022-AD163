@@ -62,6 +62,13 @@ After adding the sensor data to your application, you'll need to configure the d
     }
 ````
 
+Since this workshop will not use adaptation and flexibility functionality, in addition set the *flexEnabled* flag in the manifest to *false*.
+````js
+    "sap.ui5": {
+    "flexEnabled": false,
+    ...
+````
+
 ## Exercise 3.3 - Add a GridList
 
 After configuring the data service, it's now time to enrich your `Sensors.view.xml` with some fancy UI5 controls!
