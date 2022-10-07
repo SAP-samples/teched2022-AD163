@@ -88,9 +88,52 @@ Once this is setup, go to your run configurations and restart the project - once
 
 Since the service is ready to be consumed, import the *Sensor Manager* application created earlier into the project. In the *File* menu in the upper left corner in BAS, you can reselect the sensor manager fiori project created earlier - once the fiori project has been selected, select *Download* in the *File* menu in BAS. Switch back in the *File* menu by opening the just created CAP project. In the *app* folder, rightclick and select *import*. The downloaded archive can be added to the project, the webapp folder should be placed in the *app* folder of the CAP project:
 <br><br>![](images/11d_08.png)<br><br>
-Restart the run configuration again. There is now an application available in the project:
-<br><br>![](images/11d_09.png)<br><br>
-Select */webapp/index.html* to execute the application. Since we have not yet changed the data source in the application configuration, there is still the json data being used. We need to change that by doing some adjustments in the data source definition of the *manifest.json*. Replace the *sensorSource* in the *dataSources* as following:
+Restart the run configuration again. There is now an application available in the project.
+
+Since the project structure has changed, open the *webapp/index.html* file of the ui5 app project and change the root sources for SAPUI5 as following:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sensor Manager</title>
+    <style>
+        html, body, body > div, #container, #container-uiarea {
+            height: 100%;
+        }
+    </style>
+    <script
+        id="sap-ui-bootstrap"
+        src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-resourceroots='{
+            "keepcool.sensormanager": "./"
+        }'
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted"
+    ></script>
+    <script id="locate-reuse-libs" src="./utils/locate-reuse-libs.js"
+        data-sap-ui-manifest-uri="./manifest.json"
+        data-sap-ui-componentName="keepcool.sensormanager">
+    </script> 
+</head>
+<body class="sapUiBody sapUiSizeCompact" id="content">
+    <div
+        data-sap-ui-component
+        data-name="keepcool.sensormanager"
+        data-id="container"
+        data-settings='{"id" : "keepcool.sensormanager"}'
+        data-handle-validation="true"
+    ></div>
+</body>
+</html>
+```
+
+Since we have not yet changed the data source in the application configuration, there is still the json data being used. We need to change that by doing some adjustments in the data source definition of the *manifest.json*. Replace the *sensorSource* in the *dataSources* as following:
 
 ```json
 "dataSources": {
@@ -137,7 +180,23 @@ To do that, open *Sensors.view.xml* and replace the binding in the *GridList* co
 
 You can now delete the json data added in exercise 3 by deleting the *sensors.json* file in the *localService* folder. Refresh your application, the application is now running on the service that has just been implemented. By opening the dev tools in the chrome browser by pressing *F12* you can switch to the *Network* tab. Notice that whenever a new filtering or selection has been triggered, a new *batch* request can be observed triggered by the odata model to the *SensorService*.
 
-This service can now be enhanced with new fields, annotations to be consumed by complex applications and connected to a database - great! Your application is now running on an OData service.
+Since we're using TypeScript in this exercise, we will need an additional build process to transpile the TypeScript files into native JavaScript which can be interpreted by the browser. To do that, press *Terminal* in the upper toolbar in BAS and select *New Terminal*:
+<br><br>![](images/11d_10.png)<br><br>
+
+Once the terminal opens in the lower area of the screen, switch to the *sensormanager* app directory and type the following two arguments:
+
+````
+npm install
+npm run build
+````
+
+This will create a new *dist* folder conaining the transpiled JavaScript sources based on the TypeScript files. Restart the sensor_project sources and click on the app project containing the *dist* folder:
+
+<br><br>![](images/11d_11.png)<br><br>
+
+You can see that the app is now showing up as before, but this time consuming the service using an UI5 OData V4 model.
+
+This service can now be enriched with new fields, annotations to be consumed by complex applications and connected to a database - great! Your application is now running on an OData service.
 
 ## Summary
 Great! You've successfully added an OData service to your project.

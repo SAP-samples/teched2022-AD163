@@ -97,13 +97,15 @@ Depending on the used code editor, you can also navigate to the definition of th
 ```typescript
     public onInit(): void {
         const ownerComp = this.getOwnerComponent();
-        this.getSensorModel().dataLoaded().then(function() {
-            const resourceModel = (ownerComp?.getModel("i18n") as ResourceModel);
-            const resourceBundle = (resourceModel.getResourceBundle() as ResourceBundle);
-            MessageToast.show(resourceBundle.getText("msgSensorDataLoaded"), { closeOnBrowserNavigation: false });
-        }.bind(this)).catch(function(oErr: Error){
-            MessageToast.show(oErr.message, { closeOnBrowserNavigation: false });
-        });
+        if (this.getSensorModel().isA("sap.ui.model.json.JSONModel")) {
+            this.getSensorModel().dataLoaded().then(function() {
+                const resourceModel = (ownerComp?.getModel("i18n") as ResourceModel);
+                const resourceBundle = (resourceModel.getResourceBundle() as ResourceBundle);
+                MessageToast.show(resourceBundle.getText("msgSensorDataLoaded"), { closeOnBrowserNavigation: false });
+            }.bind(this)).catch(function(oErr: Error){
+                MessageToast.show(oErr.message, { closeOnBrowserNavigation: false });
+            });
+        }
     }
 
     public getSensorModel(): JSONModel {
