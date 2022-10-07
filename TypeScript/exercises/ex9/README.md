@@ -196,9 +196,9 @@ export default class SensorStatus extends Controller {
 
 ## Summary
 
-Yay! You've successfully completed [Exercise 9 - Card with NumericHeader](#exercise-9---card-with-numericheader). Stay tuned!
+Yay! You've successfully completed [Exercise 9 - Card with NumericHeader](#exercise-9---card-with-numericheader). Great! You've just finished a basic UI5 application and became one step closer in becoming a UI5 expert.
 
-Continue to [Exercise 10 - Chart with Data Binding](../ex10/README.md).
+Let's take a look at the additional exercises [Additional exercises](../../)
 
 ## Further Information
 * Cards: https://ui5.sap.com/#/topic/5b46b03f024542ba802d99d67bc1a3f4
