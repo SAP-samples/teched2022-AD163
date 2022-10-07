@@ -75,7 +75,7 @@ After completing the previous exercises, you are quite experienced in enhancing 
 ````xml
                             <mc:InteractiveLineChartPoint
                                 value="{=Number.parseFloat(${sensorModel>temperature}.toFixed(1))}"
-                                color="{parts: ['sensorModel>/threshold', 'sensorModel>temperature'],
+                                color="{parts: ['sensorModel>temperature'],
                                     formatter:'.formatValueColor'}"/>
 ````
 
