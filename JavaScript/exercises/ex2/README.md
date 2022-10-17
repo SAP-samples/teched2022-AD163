@@ -5,9 +5,9 @@
 
 In this exercise you'll add some content to your application. A new UI5 view showing multiple sensors will be the first part of your app.
 
-## Exercise 2.1 - Check SAP Fiori 3
+## Exercise 2.1 - Check SAP Horizon
 
-SAP Fiori 3 is SAP’s new target design system. It evolves the SAP Fiori design for all SAP products to fully support the Intelligent Suite, running on any device. SAP Business Application Studio by default generates UI5 projects based on SAP Fiori 3. In your UI5 application the SAP Fiori version is controlled by the UI5 theme.
+SAP Horizon is SAP’s new target design system. It evolves the SAP Fiori design for all SAP products to fully support the Intelligent Suite, running on any device. SAP Business Application Studio by default generates UI5 projects based on SAP Horizon. In your UI5 application the SAP Fiori version is controlled by the UI5 theme.
 
 1. Click on the files icon at the top of the icon bar at the left and open `sensormanager/webapp/index.html`.
 
@@ -68,7 +68,7 @@ But for now we will keep the default as set to sap_horizon.
 
 ## Exercise 2.2 - Create Sensors.view.xml
 
-After completing these steps you'll have written your first UI5 view. Before creating a new view, let's take a look at the precreated view App.view.xml located under `sensormanager/webapp/App.view.xml`.
+After completing these steps you'll have written your first UI5 view. Before creating a new view, let's take a look at the precreated view App.view.xml located under `sensormanager/webapp/view/App.view.xml`.
 Replace the content as following:
 
 ````xml
@@ -123,7 +123,7 @@ You will use several UI5 libraries like `sap.m` or `sap.f` in your application. 
 
 1. Open `sensormanager/webapp/manifest.json`.
 2. Go to the section `sap.ui5`.
-3. Add the `sap.f` and `sap.suite.ui.microchart` libraries to the `dependencies/libs` section. UI5 will take care of loading all the libraries listed here when your app is started.
+3. Replace the libraries in the `dependencies/libs` section. UI5 will take care of loading all the libraries listed here when your app is started. 
 
 ***sensormanager/webapp/manifest.json***
 
