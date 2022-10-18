@@ -53,14 +53,20 @@ The `sensorSource`, points to the sensor data which has just beed added to the `
 ***sensormanager/webapp/manifest.json***
 
 ````js
-    "sap.ui5": {
-        "models": {
-            "sensorModel": {
-                "type": "sap.ui.model.json.JSONModel",
-                "dataSource": "sensorSource"
-            }
+  "sap.ui5": {
+    ...
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "keepcool.sensormanager.i18n.i18n"
         }
-    }
+      },
+      "sensorModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "sensorSource"
+      }
+    },
 ````
 
 The `JSONModel` with name `sensorModel` is defined here which will serve as the centrail datapoint in the application.
@@ -98,14 +104,16 @@ After configuring the data service, it's now time to enrich your `Sensors.view.x
 ***sensormanager/webapp/view/Sensors.view.xml***
 
 ````xml
-                    <f:GridList id="sensorsList" noDataText="No sensors">
+                    <f:GridList id="sensorsList">
                         <f:customLayout>
                             <grid:GridBoxLayout/>
                         </f:customLayout>
                         <f:items>
-                            <CustomListItem>
-                            </CustomListItem>
+                            <!-- item template will be added here! -->
                         </f:items>
+                        <f:noData>
+                            <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
+                        </f:noData>
                     </f:GridList>
 
 ````
