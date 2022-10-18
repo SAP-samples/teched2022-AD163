@@ -137,7 +137,7 @@ After adding the `sap.f.GridList` control, you'll need to connect the control to
                         noDataText="No sensors">
 ````
 
-3. The list items are defined once as a template, which is then repeated multiple times to represent each entry of the sensors array. We also add some location details to our `sap.m.CustomListItem`. Here, `location` references the location property of each of the displayed sensor items.
+3. The list items are defined once as a template, which is then repeated multiple times to represent each entry of the sensors array. We also add some location details to our `sap.m.CustomListItem`. Here, `location` references the location property of each of the displayed sensor items. Replace the comment `<!-- item template will be added here!>` with the following template:
 
 ***sensormanager/webapp/view/Sensors.view.xml***
 

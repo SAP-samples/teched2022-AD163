@@ -163,8 +163,8 @@ import ResourceModel from "sap/ui/model/resource/ResourceModel";
 import { IconColor } from "sap/ui/core/library";
 
 enum Threshold {
-    warm = 4,
-    hot = 5
+    Warm = 4,
+    Hot = 5
 }
 
 /**
@@ -189,19 +189,16 @@ export default class Sensors extends Controller {
         return oModel;
     }
 
-    formatIconColor(temperature: number): IconColor {
-        if (!Threshold) {
-            return IconColor.Neutral;
-        } else if (temperature < Threshold.warm) {
-            return IconColor.Default;
-        } else if (temperature >= Threshold.warm && temperature < Threshold.hot) {
+    formatIconColor(temperature: number): IconColor|string {
+        if (temperature < Threshold.Warm) {
+            return "#0984e3";
+        } else if (temperature >= Threshold.Warm && temperature < Threshold.Hot) {
             return IconColor.Critical;
         } else {
             return IconColor.Negative;
         }
     }
 }
-
 ````
 
 You can observe that TypeScript allows to specifiy the type of the *temperature* parameter. In addition TypeScript allows us to specify a type definition for the function. In this case the *IconColor* as return type.
