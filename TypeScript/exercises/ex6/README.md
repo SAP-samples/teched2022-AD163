@@ -47,24 +47,28 @@ In the previous section you've added all necessary controls. Next, you'll implem
 
     onSensorSelect(event: Event): void {
 
-        const oBinding = this.getView()?.byId("sensorsList")?.getBinding("items");
-        const sKey = (event.getParameter("key") as string);
+        const listBinding = this.getView()?.byId("sensorsList")?.getBinding("items") as ListBinding;
+        const key = (event.getParameter("key") as string);
 
-        if (sKey === "Cold") {
-            this.statusFilters = [new Filter("temperature", "LT", Threshold.warm, false)];
-        } else if (sKey === "Warm") {
-            this.statusFilters = [new Filter("temperature", "BT", Threshold.warm, Threshold.hot)];
-        } else if (sKey === "Hot") {
-            this.statusFilters = [new Filter("temperature", "GT", Threshold.hot, false)];
+        if (key === "Cold") {
+            this.statusFilters = [new Filter("temperature", "LT", Threshold.Warm, false)];
+        } else if (key === "Warm") {
+            this.statusFilters = [new Filter("temperature", "BT", Threshold.Warm, Threshold.Hot)];
+        } else if (key === "Hot") {
+            this.statusFilters = [new Filter("temperature", "GT", Threshold.Hot, false)];
         } else {
             this.statusFilters = [];
         }
 
-        (oBinding as ListBinding).filter(this.statusFilters);
+        listBinding.filter(this.statusFilters);
     }
 ````
 
-You can again make use of the *quickfix* functionality on hover to add the missing import modules.
+You can again make use of the *quickfix* functionality on hover to add the missing import modules. Note that for `Filter` there are two modules available that will be recommended:
+- `sap/ui/model/Filter`
+- `sap/ui/model/odata/Filter`
+
+Chose the `sap/ui/model/Filter` option, as this application is using a JSONModel.
 
 Knowledge about the DOM types like Event is built-in to TypeScript (note: there is no import in the file for the "Event" type so far!). Due to the name equality, TypeScript assumes the DOM Event class is meant. This is something to keep in mind when dealing with types which have very generic and common names.
 
@@ -73,6 +77,15 @@ You can simply override by explicitly importing the UI5 Event class. Add the fol
 ````js
 import Event from "sap/ui/base/Event";
 ````
+
+Please also try to type the last line of this code block manually: `listBinding.filter(this.statusFilters);` and avoid to copy paste the last line. 
+This way another advantage of TypeScript can be seen here, as there is a type ahead available for available methods on the given object type:
+
+<br><br>![](images/06_01_0005.png)<br><br>
+
+There is also direct access available to the documentation:
+
+<br><br>![](images/06_01_0005b.png)<br><br>
 
 ## Exercise 6.3 - Assign the Filtering to the IconTabBar
 
