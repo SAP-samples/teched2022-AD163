@@ -30,13 +30,12 @@ After adding the sensor data to your application, you'll need to configure the d
 
 1. Open the `manifest.json` file located under `sensormanager/webapp`.
 
-2. Go to the section `sap.app`. Here, you add a new `dataSources` section containing a data source with name `sensorSource`, which points to the sensor data.
+2. Go to the section `sap.app`. Here, replace the `dataSources` section as follwowing:
 
 ***sensormanager/webapp/manifest.json***
 
 ````js
     "sap.app": {
-        ...,
         "dataSources": {
             "sensorSource": {
                 "type": "JSON",
@@ -46,20 +45,32 @@ After adding the sensor data to your application, you'll need to configure the d
     }
 ````
 
-3. Go to the section `sap.ui5`. Here, you add a new JSONModel with name `sensorModel`, which points to the newly created data source.
+The `sensorSource`, points to the sensor data which has just beed added to the `localService` folder.
+
+3. Go to the section `sap.ui5`. Here, replace the `models`section as following:
 
 ***sensormanager/webapp/manifest.json***
 
 ````js
     "sap.ui5": {
         "models": {
-	        ...,
             "sensorModel": {
                 "type": "sap.ui.model.json.JSONModel",
                 "dataSource": "sensorSource"
             }
         }
     }
+````
+
+The `JSONModel` with name `sensorModel` is defined here which will serve as the centrail datapoint in the application.
+Note that this model is referencing to the data source that has been created prior to the model.
+
+Since this workshop does not use flexibility services, disable the flex enablement as following:
+
+````js
+    "sap.ui5": {
+    "flexEnabled": false,
+    ...
 ````
 
 ## Exercise 3.3 - Add a GridList
