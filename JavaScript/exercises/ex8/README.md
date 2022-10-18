@@ -170,12 +170,12 @@ sap.ui.define([
 ***sensormanager/webapp/view/SensorStatus.view.xml***
 
 ````xml
-<Page 
-    id="SensorStatusPage" 
-    title="{i18n>titleSensorStatus}" 
-    showNavButton="true" 
-    navButtonPress=".navToSensors">
-</Page>
+    <Page 
+        id="SensorStatusPage" 
+        title="{i18n>titleSensorStatus}" 
+        showNavButton="true" 
+        navButtonPress=".navToSensors">
+    </Page>
 ````
 
 5. Let's see if the navigation logic works. Switch to the browser tab with the opened application preview. In the URL, remove any content after `index.html`. Reload the page.

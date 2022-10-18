@@ -76,10 +76,10 @@ Fine. You can access the newly created view. Next, you need to implement logic t
 ***sensormanager/webapp/controller/Sensors.controller.ts***
 
 ````js
-            navToSensorStatus(event: Event): void {
-                const sensorIndex = (event.getSource() as Control).getBindingContext("sensorModel")?.getProperty("index");
-                (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensorStatus", {index: sensorIndex});
-            }
+    navToSensorStatus(event: Event): void {
+        const sensorIndex = (event.getSource() as Control).getBindingContext("sensorModel")?.getProperty("index") as number;
+        (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensorStatus", {index: sensorIndex});
+    }
 ````
 
 ## Exercise 8.4 - Assign the Navigation Logic to the Sensor Items
@@ -179,12 +179,12 @@ export default class SensorStatus extends Controller {
 ***sensormanager/webapp/view/SensorStatus.view.xml***
 
 ````xml
-<Page 
-    id="SensorStatusPage" 
-    title="{i18n>titleSensorStatus}" 
-    showNavButton="true" 
-    navButtonPress=".navToSensors">
-</Page>
+    <Page 
+        id="SensorStatusPage" 
+        title="{i18n>titleSensorStatus}" 
+        showNavButton="true" 
+        navButtonPress=".navToSensors">
+    </Page>
 ````
 
 5. Let's see if the navigation logic works. Switch to the browser tab with the opened application preview. In the URL, remove any content after `index.html`. Reload the page.

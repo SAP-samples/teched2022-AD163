@@ -70,7 +70,7 @@ import formatMessage from "sap/base/strings/formatMessage"
 export default class SensorStatus extends Controller {
     formatMessage = formatMessage;
     public onInit(): void {
-        (this.getOwnerComponent() as UIComponent).getRouter().getRoute("RouteSensorStatus")?.attachMatched(this.onRouteMatched, this);
+        (this.getOwnerComponent() as UIComponent).getRouter().getRoute("RouteSensorStatus")?.attachMatched(this.onRouteMatched.bind(this), this);
     }
     public onRouteMatched(event: Event): void {
         this.getView()?.bindElement({
@@ -133,14 +133,14 @@ import { ValueColor } from "sap/m/library";
  */
 
  enum Threshold {
-    warm = 4,
-    hot = 5
+    Warm = 4,
+    Hot = 5
 }
 
 export default class SensorStatus extends Controller {
     formatMessage = formatMessage;
     public onInit(): void {
-        (this.getOwnerComponent() as UIComponent).getRouter().getRoute("RouteSensorStatus")?.attachMatched(this.onRouteMatched, this);
+        (this.getOwnerComponent() as UIComponent).getRouter().getRoute("RouteSensorStatus")?.attachMatched(this.onRouteMatched.bind(this), this);
     }
     public onRouteMatched(event: Event): void {
         this.getView()?.bindElement({
@@ -152,10 +152,10 @@ export default class SensorStatus extends Controller {
         (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensors")
     }
 
-    formatValueColor(iTemperature: number): ValueColor {
-        if (iTemperature < Threshold.warm) {
+    formatValueColor(temperature: number): ValueColor {
+        if (temperature < Threshold.Warm) {
             return ValueColor.Neutral;
-        } else if (iTemperature >= Threshold.warm && iTemperature < Threshold.hot) {
+        } else if (temperature >= Threshold.Warm && temperature < Threshold.Hot) {
             return ValueColor.Critical;
         } else {
             return ValueColor.Error;
