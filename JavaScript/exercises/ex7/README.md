@@ -158,22 +158,14 @@ After providing an option to select preferred customers, you also need to add th
                 ...
 ````
 
+In addition, the earlier created `onSensorSelect` method needs to be adjusted. This method now also needs to take the custom filters into account in addition to the status filters:
+
 ***sensormanager/webapp/controller/Sensors.controller.js***
 
 ````js
             onSensorSelect: function (oEvent) {
-                var oBinding = this.getView().byId("sensorsList").getBinding("items"),
-                    sKey = oEvent.getParameter("key")
 
-                if (sKey === "Cold") {
-                    this._aStatusFilters = [new Filter("temperature", "LT", this.oThreshold.warm, false)];
-                } else if (sKey === "Warm") {
-                    this._aStatusFilters = [new Filter("temperature", "BT", this.oThreshold.warm, this.oThreshold.hot, false)];
-                } else if (sKey === "Hot") {
-                    this._aStatusFilters = [new Filter("temperature", "GT", this.oThreshold.hot, false)];
-                } else {
-                    this._aStatusFilters = [];
-                }
+                ...
 
                 oBinding.filter(this._aStatusFilters.concat(this._aCustomerFilters));
             },

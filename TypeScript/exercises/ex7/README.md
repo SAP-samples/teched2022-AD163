@@ -49,33 +49,33 @@ After creating the dialog, you need to implement the coding to open the dialog.
 ***sensormanager/webapp/controller/Sensors.controller.ts***
 
 ````js
-                private dialog: Promise<SelectDialog>;
+    private dialog: Promise<SelectDialog>;
 
-                onCustomerSelect(): void{
-                    if(!(this.dialog instanceof Promise)) {
+    onCustomerSelect(): void{
+        if(!(this.dialog instanceof Promise)) {
 
-                        const sensorModel = this.getSensorModel();
-                        const resourceModel = this.getView()?.getModel("i18n") as ResourceModel;
+            const sensorModel = this.getSensorModel();
+            const resourceModel = this.getView()?.getModel("i18n") as ResourceModel;
 
-                        this.dialog = Fragment.load({
-                            type: "XML",
-                            name: "keepcool.sensormanager.view.CustomerSelectDialog",
-                            controller: this
-                        }).then(function(control: Control|Control[]){
-                            const dialog = (control instanceof Array ? control[0] : control) as SelectDialog;
-                            dialog.setModel(sensorModel, "sensorModel");
-                            dialog.setModel(resourceModel, "i18n");
-                            dialog.setMultiSelect(true);
-                            return dialog;
-                        });
-                    }
+            this.dialog = Fragment.load({
+                type: "XML",
+                name: "keepcool.sensormanager.view.CustomerSelectDialog",
+                controller: this
+            }).then(function(control: Control|Control[]){
+                const dialog = (control instanceof Array ? control[0] : control) as SelectDialog;
+                dialog.setModel(sensorModel, "sensorModel");
+                dialog.setModel(resourceModel, "i18n");
+                dialog.setMultiSelect(true);
+                return dialog;
+            });
+        }
 
-                    this.dialog.then(function(oDialog){
-                        oDialog.open("");
-                    }).catch(function(oErr: Error){
-                        MessageToast.show(oErr.message);
-                    })
-                }
+        this.dialog.then(function(dialog){
+            dialog.open("");
+        }).catch(function(err: Error){
+            MessageToast.show(err.message);
+        });
+    }
 
 ````
 
@@ -112,12 +112,12 @@ For this, you need to implement the filter logic.
 ***sensormanager/webapp/controller/Sensors.controller.ts***
 
 ````js
-            onCustomerSelectChange(event: Event): void {
-                const sValue = (event.getParameter("value") as string);
-                const oFilter = new Filter("name", "Contains", sValue);
-                const oBinding = (event.getSource() as Control).getBinding("items");
-                (oBinding as ListBinding).filter([oFilter]);
-            }
+    onCustomerSelectChange(event: Event): void {
+        const value = (event.getParameter("value") as string);
+        const filter = new Filter("name", "Contains", value);
+        const listBinding = (event.getSource() as Control).getBinding("items") as ListBinding;
+        listBinding.filter([filter]);
+    }
 
 ````
 
@@ -132,36 +132,25 @@ After providing an option to select preferred customers, you also need to add th
 ***sensormanager/webapp/controller/Sensors.controller.ts***
 
 ````js
-            onCustomerSelectConfirm(event: Event): void {
-                var aSelectedItems = event.getParameter("selectedItems");
-                var oBinding = this.getView()?.byId("sensorsList")?.getBinding("items");
-                this.customFilters = aSelectedItems.map(function(item: StandardListItem) {
-                    return new Filter("customer", "EQ", item.getTitle());
-                });
-                (oBinding as ListBinding).filter(this.customFilters.concat(this.statusFilters));
-            }
+    onCustomerSelectConfirm(event: Event): void {
+        const selectedItems = (event.getParameter("selectedItems") as StandardListItem[]);
+        const listBinding = this.getView()?.byId("sensorsList")?.getBinding("items") as ListBinding;
+        this.customFilters = selectedItems.map(function(item: StandardListItem) {
+            return new Filter("customer", "EQ", item.getTitle());
+        });
+        listBinding.filter(this.customFilters.concat(this.statusFilters));
+    }
 ````
 
+In addition, the earlier created `onSensorSelect` method needs to be adjusted. This method now also needs to take the custom filters into account in addition to the status filters:
 ***sensormanager/webapp/controller/Sensors.controller.ts***
 
 ````js
         onSensorSelect(event: Event): void {
 
-            var oBinding = this.getView()?.byId("sensorsList")?.getBinding("items"),
-                sKey = event.getParameter("key"),
-                oThreshold = this.getSensorModel().getProperty("/threshold");
+            ...
 
-            if (sKey === "Cold") {
-                this.statusFilters = [new Filter("temperature/value", "LT", oThreshold.warm, false)];
-            } else if (sKey === "Warm") {
-                this.statusFilters = [new Filter("temperature/value", "BT", oThreshold.warm, oThreshold.hot)];
-            } else if (sKey === "Hot") {
-                this.statusFilters = [new Filter("temperature/value", "GT", oThreshold.hot, false)];
-            } else {
-                this.statusFilters = [];
-            }
-
-            (oBinding as ListBinding).filter(this.statusFilters.concat(this.customFilters));
+            listBinding.filter(this.statusFilters.concat(this.customFilters));
         }
 ````
 
