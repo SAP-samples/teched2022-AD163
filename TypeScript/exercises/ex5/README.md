@@ -185,8 +185,8 @@ export default class Sensors extends Controller {
 
     public getSensorModel(): JSONModel {
         const ownerComp = this.getOwnerComponent();
-        const oModel = (ownerComp?.getModel("sensorModel") as JSONModel);
-        return oModel;
+        const model = (ownerComp?.getModel("sensorModel") as JSONModel);
+        return model;
     }
 
     formatIconColor(temperature: number): IconColor|string {
