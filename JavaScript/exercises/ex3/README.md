@@ -36,6 +36,7 @@ After adding the sensor data to your application, you'll need to configure the d
 
 ````js
     "sap.app": {
+        ...
         "dataSources": {
             "sensorSource": {
                 "type": "JSON",
