@@ -13,7 +13,9 @@ After completing these steps you will know how to open SAP Business Application 
 3. Now you can create your dev space! Click *Create Dev Space*.
 <br><br>![](images/00_01_0010.png)<br><br>
 
-4. Enter the new name of your dev space, e.g. *UI5development*, select *SAP Fiori* as application type, select *CAP tools* in addition and and click *Create Dev Space*.
+4. Enter the new name of your dev space, e.g. *UI5development*, select *SAP Fiori* as application type and press *Create Dev Space*.<br>
+*Note:* The selection in the left defines a preset of extensions preinstalled to your dev space. You can select the most suitable preset for your dev space.<br>
+The right area of the configuration shows the predefined extensions in the chosen setting and also gives you the possibility to enrich your settings with additional add ons if you only require a certain module, such as for example *CAP Tools* if you would like to create a full stack application.
 <br><br>![](images/00_01_0020.png)<br><br>
 
 5. Your dev space is being prepared and starts up. This might take a few minutes. Wait until the status shows *RUNNING*.
