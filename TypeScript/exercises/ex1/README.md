@@ -67,7 +67,8 @@ It's time for a first preview of your newly created application!
 4. A new configuration page will open:
     1. Enter *run sensormanager* as *Name*.
     2. Choose *index.html* as *File Name*.
-    3. Press *Save*.
+    3. Remove the URL parameter configuration
+    4. Press *Save*.
 <br><br>![](images/01_02_0030.png)<br><br>
 
 5. To tart the application by executing the run configuration we just created, press the *play* icon right next to the configuration.
