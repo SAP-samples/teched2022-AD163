@@ -1,230 +1,108 @@
-[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex12)
-[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/ex12/sensormanager/webapp/)
+[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex11)
 
-# Exercise 10C - Develop your own Control
+# Exercise 10C - Deploy Your App to SAP BTP, Cloud Foundry runtime
 
-In this exercise you'll create your own UI5 custom control. Although the color of the thermometer icons shows already the general state in the main page, we want to see the temperature value and the temperature level also displayed graphically. Therefore we create a thermometer control which displays the temperatur with the color and the height of the scale directly.
+In this exercise you'll learn how easy it is to deploy your application directly from SAP Business Application Studio to the SAP BTP, Cloud Foundry runtime.
 
-## Exercise 10C.1 - Create the Custom Control Code
+## Exercise 10C.1 - Create Space in Cloud Foundry
 
-1. Right-click on the `sensormanager/webapp` folder and select `New Folder`. Enter "control" as folder name and confirm.
+First of all, you need to create the space in your Cloud Foundry environment to host your newly created UI5 application.
 
-2. Right-click on this newly created `sensormanager/webapp/control` folder and select `New File`. Enter "Thermometer.js" as file name and confirm.
+1. Open the SAP BTP Trial by opening *https://cockpit.hanatrial.ondemand.com/cockpit/#/home/trial* in a new browser tab and click *Go To Your Trial Account*.
+<br><br>![](images/11_01_0010.png)<br><br>
 
-3. Add the following thermometer control code as content of the newly created `Thermometer.ts` file. The control just renders a simple `div` element which contains the temperature value as text. This will be enhanced later.
+2. You're redirected to your personal SAP BTP Cockpit where your subaccounts are listed. Click on the prefered subaccount, e.g. *trial*.
+<br><br>![](images/11_01_0020.png)<br><br>
 
-***sensormanager/webapp/control/Thermometer.js***
+3. Click the menu item *Cloud Foundry* and then *Spaces*. Until now, no space was created by you. Click *Create Space*.
+<br><br>![](images/11_01_0030.png)<br><br>
 
-````js
-import UI5Control from "sap/ui/core/Control";
-import RenderManager from "sap/ui/core/RenderManager";
+4. In the popup, enter the space name, e.g. *ui5-apps*. Click *Create*.
+<br><br>![](images/11_01_0040.png)<br><br>
 
-/**
- * @name keepcool.sensormanager.control.Thermometer
- */
-export default class Thermometer extends UI5Control {
-	static readonly metadata = {
-		properties: {
-			color: "string",
-			value: "float"
-		}
-      
-	}
+5. The newly created space is displayed.
+<br><br>![](images/11_01_0050.png)<br><br>
 
-	renderer = {
-		apiVersion : 2,
-		render: (rm: RenderManager, control: Thermometer) => {
-			if (control.getValue()) {
-				rm.openStart("div", control);
-				rm.class("thermometer-control");
-				rm.openEnd();
-				rm.text(control.getValue());
-				rm.close("div");
-			
-			}
-		}
-	}
-}
+## Exercise 10C.2 - Subscribe to Launchpad Service
+
+To be able to display deployed UI5 applications we need the Launchpad Service in our trial account.
+1. To subscribe to it, click on *Service Marketplace* and search the Launchpad Service.
+2. Click on the Launchpad Service tile and then on *Create* on the right hand side
+<br><br>![](images/11_02_0060.png)<br><br>
+
+3. Leave the selected values as they are and click *Create*
+<br><br>![](images/11_02_0070.png)<br><br>
+
+If you now click on *Instance and Subscriptions* you'll see that you have subscribed to the Launchpad Servcice.
+## Exercise 10C.3 - Login to Cloud Foundry
+
+Now you can login to your Cloud Foundry environment directly from SAP Business Application Studio.
+
+1. Open SAP Business Application Studio. Click in the header toolbar on *View* and then select *Find Command...*. Enter *CF: Login to cloud foundry*.
+<br><br>![](images/11_02_0010.png)<br><br>
+
+Now specify the user credentials:
+<br><br>![](images/11_02_0020.png)<br><br>
+
+## Exercise 10C.4 - Set Organization and Space
+
+After logging in you're asked to specify your desired Cloud Foundry organization and space:
+
+<br><br>![](images/11_04_0010.png)<br><br>
+
+
+## Exercise 10C.5 - Configure Your UI5 Application
+
+Since you created your app using one of the application templates available in SAP Business Application Studio, all files which are located under `sensormanager/test/` and `sensormanager/localService/` are excluded from any build, because in a productive application these files are usually not needed. In our case the sensor data is placed in a local JSON file, so the `sensors.json` file needs to be included in the build.
+
+1. Open `sensormanager/ui5-deploy.yaml`.
+
+2. Remove the `"/localService/**"` entry for the `builder` section.
+
+***sensormanager/ui5-deploy.yaml***
+
+````yaml
+builder:
+  resources:
+    excludes:
+      - "/test/**"
 ````
 
-4. Open `sensormanager/css/style.css`.
+## Exercise 10C.6 - Build Your Application
 
-5. Add the css properties for the `div` element which is created by your thermometer control. In the first step it is just a gray square displaying the temparature.
+Now it's time to build your application. Yeah!
 
-***sensormanager/webapp/css/style.css***
+1. Right-click the `mta.yaml` file in the root folder.
 
-````css
-/* Enter your custom styles here */
-.thermometer-control {
-    width: 50px;
-    height: 80px;
-    text-align: center;
-    color: white;
-    background-color: gray;
-}
-````
+2. Select *Build MTA Project*. The build starts.
 
-6. In the file `Sensors.view.xml`, switch from the icon control to your thermometer control. First define a namespace for the control folder like for a library:
+<br><br>![](images/11_06_0010.png)<br><br>
 
-***sensormanager/webapp/view/Sensors.view.xml***
+3. Once the build has finished the terminal will display messages that the MTA archive has been generated and temporary files are cleaned up:
 
-````xml
-<mvc:View
-    controllerName="keepcool.sensormanager.controller.Sensors"
-    xmlns:core="sap.ui.core"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:grid="sap.ui.layout.cssgrid"
-    xmlns:f="sap.f"
-    xmlns="sap.m"
-    xmlns:cc="keepcool.sensormanager.control"
-    displayBlock="true">
-    <Page id="page" title="{i18n>title}">
-
-````
-
-6. Replace the icon control with your thermometer control in the view. It will use the same properties as the icon control, but uses a new formatter for the color.
-
-***sensormanager/webapp/view/Sensors.view.xml***
-
-````xml
-  <HBox justifyContent="SpaceBetween">
-    <VBox justifyContent="SpaceBetween" class="sapUiSmallMarginTop sapUiSmallMarginBegin">
-      <Title text="{sensorModel>location}"/>
-      <Label text="{i18n>distanceLabel}:"/>
-    </VBox>
-
-    <cc:Thermometer
-      value="{sensorModel>temperature}"
-      color="{path: 'sensorModel>temperature', formatter:'.formatThermometerColor'}"
-      class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-
-    <!--core:Icon
-      src="sap-icon://temperature"
-      color="{path: 'sensorModel>temperature', formatter:'.formatIconColor'}"
-      size="2.5rem"
-      class="sapUiSmallMarginTop sapUiSmallMarginEnd"/-->
-  </HBox>
-````
-
-7. Open the file `Sensors.controller.js` and add the new formatter, which closely resembles the old one, but returns concrete CSS color values. These values can be written directly to the HTML, while the previously used UI5 icon color values were translated by the icon control.
-
-***sensormanager/webapp/controller/Sensors.controller.xml***
-
-````js
-            formatThermometerColor(temperature: number) {
-                if (!Threshold) {
-                    return "black";
-                } else if (temperature < Threshold.warm) {
-                    return "#1873B4"; // less obtrusive than the standard "blue"
-                } else if (temperature >= Threshold.warm && temperature < Threshold.hot) {
-                    return "orange";
-                } else {
-                    return "red";
-                }
-            },
-````
-
-8. Reload the preview page and you see the first simple version of your thermometer control. You may have noticed that the calculated color was not yet written to the HTML in the control renderer, so the boxes are all colored the same, as defined in the CSS.
-
-<br><br>![](images/12_01_0010.png)<br><br>
+<br><br>![](images/11_06_0020.png)<br><br>
 
 
-## Exercise 10C.2 - Beautify your Thermometer Control
+## Exercise 10C.7 - Deploy Your Application
 
-Now you want to create a nice looking thermometer, which displays not only the temperature value as number but also using the height of the thermometer scale - with colors.
+The build step has created a file named `TechEd2020_0.0.1.mtar` located under `mta_archives`. This file contains your build.
 
-1. Open `sensormanager/webapp/control/Thermometer.js`.
+1. Right-click `mta_archives/TechEd2020_0.0.1.mtar` and select *Deploy MTA Archive*. Deployment starts.
+<br><br>![](images/11_07_0010.png)<br><br>
 
-2. Enhance the code of the renderer to create several HTML elements which will be used to paint a thermometer. We use three HTML elements (one `<figure>`, one `<figcaption>`, one `<div>`) which are styled using CSS and overlaid on top of each other in a way that makes the result look like a nice thermometer.
+2. You are asked for the organisation and space again. Choose your trial account as organisation and the *ui5-apps* space you just created.
 
-<br><br>![](images/12_02.png)<br><br>
+3. Deployment takes some time but should have finished after a few minutes, of which you'll be notified by in the terminal.
+<br><br>![](images/11_07_0020.png)<br><br>
 
-***sensormanager/webapp/control/Thermometer.js***
+4. The deployed application can be started from the SAP BTP Cockpit. Go to your trial subaccount and click on the *HTML5 Applications* section at tjhe left hand side. The application is listed there as 'keepcoolsensormanager'. Click on it to start it.
+<br><br>![](images/11_07_0030.png)<br><br>
 
-````js
-        renderer = {
-            apiVersion : 2,
-            render: (rm: RenderManager, control: Thermometer) => {
-                rm.openStart("figure", control);
-                rm.class("thermometer");
-                rm.style("border", "2px solid " + control.getColor());
-                rm.openEnd();
-
-                rm.openStart("figcaption");
-                rm.class("thermometer-value");
-                rm.style("background-color", control.getColor());
-                rm.style("box-shadow", "0 0 0 2px " + control.getColor());
-                rm.openEnd();
-                rm.text(control.getValue().toFixed(1)); // the temperature value
-                rm.close("figcaption");
-
-                rm.openStart("div");
-                rm.class("thermometer-level");
-                var temperatureHeight = Math.min(control.getValue() * 7, 50) + 5; // values should range from 5 to 55
-                rm.style("height", temperatureHeight + "px");
-                rm.style("background-color", control.getColor());
-                rm.openEnd();
-                rm.close("div");
-
-                rm.close("figure");
-            }
-        }
-````
-
-3. While some of the CSS properties, like the color and the height of the mercury column, are calculated and have been written by the renderer with the respective current values, most CSS (e.g. for the overall layout information) is static. Now add these static CSS properties to the CSS file of the project. Note how the CSS classes like `thermometer` and `thermometer-value` match those written in the renderer code above.
-
-***sensormanager/webapp/css/style.css***
-
-````css
-/* Enter your custom styles here */
-.thermometer {
-    display: block;
-    position: relative;
-    box-sizing: border-box;
-    width: 18px;
-    height: 60px;
-    background-color: white;
-    border-radius: 10px 10px 0 0;
-    margin: 6px;
-}
-
-.thermometer-value {
-    position: absolute;
-    bottom: -22px;
-    left: -6px;
-    border: 2px solid white;
-    width: 22px;
-    height: 18px;
-    border-radius: 14px;
-    color: white;
-    font-size: 13px;
-    text-align: center;
-    padding-top: 4px;
-}
-
-.thermometer-level {
-    background-color: white;
-    box-sizing: border-box;
-    position: absolute;
-    left: 0;
-    bottom: 1px;
-    height: 30px;
-    width: 14px;
-    border-left: 2px solid white;
-    border-right: 2px solid white;
-}
-````
-
-4. Switch to the browser tab where the application preview is opened. Now you see your own custom control displaying the temperature also graphically for every icehouse.
-<br><br>![](images/12_03_0040.png)<br><br>
-
+5. Congratulations! You've deployed your UI5 application to the SAP BTP, Cloud Foundry runtime.
+<br><br>![](images/11_07_0040.png)<br><br>
 
 ## Summary
 
-Hooray! You've successfully completed [Exercise 10C - Develop your own Control](../ex12/README.md).
+Hooray! You've completed successfully [Exercise 10C - Deployment to SAP BTP, Cloud Foundry runtime](../ex11/README.md). But this is not the end yet:
 
 Let's take a look at the additional exercises [Additional exercises](../../)
-
-## Further Information
-* Developing Controls: https://ui5.sap.com/#/topic/8dcab0011d274051808f959800cabf9f.html
-* Walkthrough - Custom Controls: https://ui5.sap.com/#/topic/d12d2ee6a5454d799358d425f9e7c4db

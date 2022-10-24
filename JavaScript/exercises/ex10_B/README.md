@@ -1,132 +1,228 @@
-[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex10)
-[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/ex10/sensormanager/webapp/)
+[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex12)
+[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/ex12/sensormanager/webapp/)
 
-# Exercise 10 - Chart with Data Binding
+# Exercise 10B - Develop your own Control
 
-In this exercise you'll add some analytical flavor to your UI5 application by using a chart.
+In this exercise you'll create your own UI5 custom control. Although the color of the thermometer icons shows already the general state in the main page, we want to see the temperature value and the temperature level also displayed graphically. Therefore we create a thermometer control which displays the temperatur with the color and the height of the scale directly.
 
-## Exercise 10.1 - Create the Chart
+## Exercise 10B.1 - Create the Custom Control Code
 
-To show some historical data you can use the `temperatureLog` of the sensor data. You'll use an `sap.suite.ui.microchart.InteractiveLineChart`to add the data points.
+1. Right-click on the `sensormanager/webapp` folder and select `New Folder`. Enter "control" as folder name and confirm.
 
-1. Open `sensormanager/webapp/view/SensorStatus.view.xml`.
+2. Right-click on this newly created `sensormanager/webapp/control` folder and select `New File`. Enter "Thermometer.js" as file name and confirm.
 
-2. Add the `sap.suite.ui.microchart` library to the `SensorStatus.view.xml`.
+3. Add the following thermometer control code as content of the newly created `Thermometer.js` file. The control just renders a simple `div` element which contains the temperature value as text. This will be enhanced later.
 
-***SensorStatus/webapp/view/SensorStatus.view.xml***
+***sensormanager/webapp/control/Thermometer.js***
+
+````js
+sap.ui.define([
+	"sap/ui/core/Control"
+], function (Control) {
+	"use strict";
+	return Control.extend("keepcool.sensormanager.control.Thermometer", {
+		metadata : {
+			properties : {
+				value: {type : "float", defaultValue : 0},
+				color: {type : "string"}
+			}
+		},
+
+		renderer : {
+			apiVersion : 2,
+			render : function (oRM, oControl) {
+				if (oControl.getValue()){
+					oRM.openStart("div", oControl);
+					oRM.class("thermometer-control");
+					oRM.openEnd();
+					oRM.text(oControl.getValue());
+					oRM.close("div");
+				}
+			}
+		}
+	});
+});
+````
+
+4. Open `sensormanager/css/style.css`.
+
+5. Add the css properties for the `div` element which is created by your thermometer control. In the first step it is just a gray square displaying the temparature.
+
+***sensormanager/webapp/css/style.css***
+
+````css
+/* Enter your custom styles here */
+.thermometer-control {
+    width: 50px;
+    height: 80px;
+    text-align: center;
+    color: white;
+    background-color: gray;
+}
+````
+
+6. In the file `Sensors.view.xml`, switch from the icon control to your thermometer control. First define a namespace for the control folder like for a library:
+
+***sensormanager/webapp/view/Sensors.view.xml***
 
 ````xml
-<mvc:View displayBlock="true"
-    controllerName="keepcool.sensormanager.controller.SensorStatus"
+<mvc:View
+    controllerName="keepcool.sensormanager.controller.Sensors"
+    xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
+    xmlns:grid="sap.ui.layout.cssgrid"
     xmlns:f="sap.f"
-    xmlns:card="sap.f.cards"
-    xmlns:mc="sap.suite.ui.microchart">
+    xmlns="sap.m"
+    xmlns:cc="keepcool.sensormanager.control"
+    displayBlock="true">
+    <Page id="page" title="{i18n>title}">
+
 ````
 
-3. Add the chart to the content aggregation of the card and bind the `temperatureLog` to the `points` aggregation. For each point we'll display the `temperature` property.
+6. Replace the icon control with your thermometer control in the view. It will use the same properties as the icon control, but uses a new formatter for the color.
 
-***SensorStatus/webapp/view/SensorStatus.view.xml***
+***sensormanager/webapp/view/Sensors.view.xml***
 
 ````xml
-                <f:content>
-                    <FlexBox
-                        width="100%"
-                        height="15rem"
-                        alignItems="Center"
-                        class="sapUiSmallMargin">
-                        <mc:InteractiveLineChart
-                            points="{sensorModel>temperatureLog}"
-                            displayedPoints="20"
-                            selectionEnabled="false">
-                            <mc:InteractiveLineChartPoint
-                                value="{sensorModel>temperature}"/>
-                        </mc:InteractiveLineChart>
-                    </FlexBox>
-                </f:content>
+  <HBox justifyContent="SpaceBetween">
+    <VBox justifyContent="SpaceBetween" class="sapUiSmallMarginTop sapUiSmallMarginBegin">
+      <Title text="{sensorModel>location}"/>
+      <Label text="{i18n>distanceLabel}:"/>
+    </VBox>
+
+    <cc:Thermometer
+      value="{sensorModel>temperature/value}"
+      color="{path: 'sensorModel>temperature/value', formatter:'.formatThermometerColor'}"
+      class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+
+    <!--core:Icon
+      src="sap-icon://temperature"
+      color="{path: 'sensorModel>temperature/value', formatter:'.formatIconColor'}"
+      size="2.5rem"
+      class="sapUiSmallMarginTop sapUiSmallMarginEnd"/-->
+  </HBox>
 ````
 
-4. Switch to the browser tab where the application preview is opened. Click any sensor. Now the sensor status page contains a chart with a temperature history.
-<br><br>![](images/10_01_0010.png)<br><br>
+7. Open the file `Sensors.controller.js` and add the new formatter, which closely resembles the old one, but returns concrete CSS color values. These values can be written directly to the HTML, while the previously used UI5 icon color values were translated by the icon control.
 
-## Exercise 10.2 - Master the Chart
+***sensormanager/webapp/controller/Sensors.controller.xml***
 
-After completing the previous exercises, you are quite experienced in enhancing your UI5 application. Master your chart to show what you've learned.
-
-1. Open `sensormanager/webapp/view/SensorStatus.view.xml`.
-
-2. Add formatting to every data point to improve readability. In this case we simply change the format of the temperature value to one digit after the comma. You can use expression binding to achieve this.
-
-***SensorStatus/webapp/view/SensorStatus.view.xml***
-
-````xml
-                            <mc:InteractiveLineChartPoint
-                                value="{=Number.parseFloat(${sensorModel>temperature}.toFixed(1))}"/>
+````js
+            formatThermometerColor: function(iTemperature) {
+                var oThreshold = this.getSensorModel().getProperty("/threshold");
+                if (!oThreshold) {
+                    return "black";
+                } else if (iTemperature < oThreshold.warm) {
+                    return "#1873B4"; // less obtrusive than the standard "blue"
+                } else if (iTemperature >= oThreshold.warm && iTemperature < oThreshold.hot) {
+                    return "orange";
+                } else {
+                    return "red";
+                }
+            },
 ````
 
-3. Switch to the browser tab where the application preview is opened. Click any sensor. Now the sensor status page contains a chart with a temperature history with better readability.
-<br><br>![](images/10_02_0010.png)<br><br>
+8. Reload the preview page and you see the first simple version of your thermometer control. You may have noticed that the calculated color was not yet written to the HTML in the control renderer, so the boxes are all colored the same, as defined in the CSS.
 
-4. Add semantic coloring to the data points with a formatter function.
+<br><br>![](images/12_01_0010.png)<br><br>
 
-***SensorStatus/webapp/view/SensorStatus.view.xml***
 
-````xml
-                            <mc:InteractiveLineChartPoint
-                                value="{=Number.parseFloat(${sensorModel>temperature}.toFixed(1))}"
-                                color="{parts: ['sensorModel>/threshold', 'sensorModel>temperature'],
-                                    formatter:'.formatValueColor'}"/>
+## Exercise 10B.2 - Beautify your Thermometer Control
+
+Now you want to create a nice looking thermometer, which displays not only the temperature value as number but also using the height of the thermometer scale - with colors.
+
+1. Open `sensormanager/webapp/control/Thermometer.js`.
+
+2. Enhance the code of the renderer to create several HTML elements which will be used to paint a thermometer. We use three HTML elements (one `<figure>`, one `<figcaption>`, one `<div>`) which are styled using CSS and overlaid on top of each other in a way that makes the result look like a nice thermometer.
+
+<br><br>![](images/12_02.png)<br><br>
+
+***sensormanager/webapp/control/Thermometer.js***
+
+````js
+        renderer : {
+            apiVersion : 2,
+            render : function (oRM, oControl) {
+                oRM.openStart("figure", oControl);
+                oRM.class("thermometer");
+                oRM.style("border", "2px solid " + oControl.getColor());
+                oRM.openEnd();
+
+                    oRM.openStart("figcaption");
+                    oRM.class("thermometer-value");
+                    oRM.style("background-color", oControl.getColor());
+                    oRM.style("box-shadow", "0 0 0 2px " + oControl.getColor());
+                    oRM.openEnd();
+                    oRM.text(oControl.getValue().toFixed(1)); // the temperature value
+                    oRM.close("figcaption");
+
+                    oRM.openStart("div");
+                    oRM.class("thermometer-level");
+                    var temperatureHeight = Math.min(oControl.getValue() * 7, 50) + 5; // values should range from 5 to 55
+                    oRM.style("height", temperatureHeight + "px");
+                    oRM.style("background-color", oControl.getColor());
+                    oRM.openEnd();
+                    oRM.close("div");
+
+                oRM.close("figure");
+            }
+        }
 ````
 
-5. Switch to the browser tab where the application preview is opened. Click any sensor. Now the sensor status page contains a chart with a temperature history with colored data points.
-<br><br>![](images/10_02_0020.png)<br><br>
+3. While some of the CSS properties, like the color and the height of the mercury column, are calculated and have been written by the renderer with the respective current values, most CSS (e.g. for the overall layout information) is static. Now add these static CSS properties to the CSS file of the project. Note how the CSS classes like `thermometer` and `thermometer-value` match those written in the renderer code above.
 
-6. Add labels to the chart to provide some contextual info to the user.
+***sensormanager/webapp/css/style.css***
 
-***SensorStatus/webapp/view/SensorStatus.view.xml***
+````css
+/* Enter your custom styles here */
+.thermometer {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    width: 18px;
+    height: 60px;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    margin: 6px;
+}
 
-````xml
-                            <mc:InteractiveLineChartPoint
-                                value="{=Number.parseFloat(${sensorModel>temperature}.toFixed(1))}"
-                                color="{parts: ['sensorModel>/threshold', 'sensorModel>temperature'],
-                                    formatter:'.formatValueColor'}"
-                                label="{sensorModel>time}"/>
+.thermometer-value {
+    position: absolute;
+    bottom: -22px;
+    left: -6px;
+    border: 2px solid white;
+    width: 22px;
+    height: 18px;
+    border-radius: 14px;
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.thermometer-level {
+    background-color: white;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    height: 30px;
+    width: 14px;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
 ````
 
-7. Switch to the browser tab where the application preview is opened. Click any sensor. Now the sensor status page contains a chart with a temperature history with x-axis labels.
-<br><br>![](images/10_02_0030.png)<br><br>
+4. Switch to the browser tab where the application preview is opened. Now you see your own custom control displaying the temperature also graphically for every icehouse.
+<br><br>![](images/12_03_0040.png)<br><br>
 
-8. Displaying timestamps on the x-axis does not make much sense. To improve readability you should format the label using a UI5 "DataType". These types are predefined and can be configured individually regarding the input and output format.
-
-***SensorStatus/webapp/view/SensorStatus.view.xml***
-
-````xml
-                            <mc:InteractiveLineChartPoint
-                                value="{=Number.parseFloat(${sensorModel>temperature}.toFixed(1))}"
-                                color="{parts: ['sensorModel>/threshold', 'sensorModel>temperature'],
-                                    formatter:'.formatValueColor'}"
-                                label="{
-                                    path: 'sensorModel>time',
-                                    type: 'sap.ui.model.type.Time',
-                                    formatOptions: {
-                                    source: { pattern: 'timestamp' }, style: 'short' }
-                                }"/>
-````
-
-9. Switch to the browser tab where the application preview is opened. Click any sensor. Now the sensor status page contains a chart with a temperature history with readable x-axis labels.
-<br><br>![](images/10_02_0040.png)<br><br>
 
 ## Summary
 
-Congratulations, you've completed successfully [Exercise 10 - Chart with DataBinding](#exercise-10---chart-with-databinding)!
+Hooray! You've successfully completed [Exercise 10B - Develop your own Control](../ex10_B/README.md).
 
 Let's take a look at the additional exercises [Additional exercises](../../)
 
-
 ## Further Information
-
-* UI5 Microcharts: https://ui5.sap.com/#/topic/9cbe3f06465e47b8a136956034a718ed
-* sap.suite.ui.microchart.InteractiveLineChart: https://ui5.sap.com/#/api/sap.suite.ui.microchart.InteractiveLineChart
-* Formatting, Parsing, and Validating Data: https://ui5.sap.com/#/topic/07e4b920f5734fd78fdaa236f26236d8
-* sap.ui.model.type.Time: https://ui5.sap.com/#/topic/91f322a06f4d1014b6dd926db0e91070
+* Developing Controls: https://ui5.sap.com/#/topic/8dcab0011d274051808f959800cabf9f.html
+* Walkthrough - Custom Controls: https://ui5.sap.com/#/topic/d12d2ee6a5454d799358d425f9e7c4db

@@ -69,7 +69,7 @@ It's time for a first preview of your newly created application!
     4. Press *Save*.
 <br><br>![](images/01_02_0030.png)<br><br>
 
-5. To tart the application by executing the run configuration we just created, press the *play* icon right next to the configuration.
+5. To start the application by executing the run configuration we just created, press the *play* icon right next to the configuration.
 <br><br>![](images/01_02_0040.png)<br><br>
 
 5. After a few moments, the application should start up as following:
