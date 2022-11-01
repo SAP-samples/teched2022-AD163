@@ -150,7 +150,7 @@ Your next goal is to bring some color to the user interface. You'd like to displ
 
 1. Open `sensormanager/webapp/controller/Sensors.controller.ts`.
 
-2. Add the new function `formatIconColor` after the `getSensorModel` function (don't forget adding a comma after the `getSensorModel` function!).
+2. Add the new function `formatIconColor` after the `getSensorModel` function.
 
 ***sensormanager/webapp/controller/Sensors.controller.ts***
 
