@@ -13,6 +13,9 @@ Your customer "Keep Cool, Inc." is an operator of several icehouses across the c
 
 After completing these steps you'll have created your first UI5 application.
 
+1. Click on *Files & Folders& on the *Welcome* page to open the workspace.
+<br><br>![](images/01_01_0009.png)<br><br>
+
 1. Click on *Start from template* on the *Welcome* page.
     * [Optional] If you have closed the *Welcome* page accidentally, click in the header toolbar on *View*, and select *Find Command...*  Enter *Welcome*.</ul>
 <br><br>![](images/01_01_0010.png)<br><br>
@@ -47,7 +50,8 @@ After completing these steps you'll have created your first UI5 application.
 
 8. The project is generated, and a notification window appears in the lower right corner which will inform you when the project has been generated. Wait for the message that the project has been generated!
 
-9.  Once the project has been generated, a popup opens. Click the blue *Open Folder* button in the middle of the popup on the screen. Alternatively, click *File* in the header toolbar, select *Open Workspace* and pick the generated project.  </ul>
+9.  Once the project has been generated, the *Application Info* page opens to show you an overview of the project and the list of functions you can do with the project.
+
 <br><br>![](images/01_01_0019.png)<br><br>
 
 ## Exercise 1.2 - Try out the generated Application
