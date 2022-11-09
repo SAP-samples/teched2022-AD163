@@ -122,7 +122,7 @@ temperatureUnit=°C
 
 Usually, only the `i18n.properties` file is maintained by developers. The language-dependent files will be filled by native speakers or translators. As an application developer, you can configure which languages are supported by your application, and which language is your default (aka fallback) language. In this session English will be the default language, and additionally German should be supported.
 
-1. Open the `manifest.json` located under `sensormanager/webapp`.
+1. Click on `manifest.json` link in the *Application Info* page. If you had closed the *Application Info* page, you can reopen it by using command `Fiori: Open Application Info` from command palette. You can also find the `manifest.json` file located under `sensormanager/webapp`.
 
 2. Go to section `sap.ui5` / `models` / `i18n`. Here, add two new configurations inside your settings object.
       1. Add the property `supportedLocales` and assign the locales for German and English `["de", "en"]`
