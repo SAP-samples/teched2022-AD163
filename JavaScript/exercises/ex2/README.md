@@ -148,7 +148,7 @@ UI5 comes with a powerful routing API that helps you control the state of your a
 
 Let's adjust the `manifest.json` to enable the routing feature for your newly created view.
 
-1. Open `sensormanager/webapp/manifest.json`.
+1. Open `manifest.json` from *Application Info* page
 2. Go to the section `sap.ui5`.
 3. Replace all content inside the `routing` property with the following content:
 
