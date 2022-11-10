@@ -42,7 +42,7 @@ SAP Horizon is SAP’s new target design system. It evolves the SAP Fiori design
     <script id="locate-reuse-libs" src="./utils/locate-reuse-libs.js"
         data-sap-ui-manifest-uri="./manifest.json"
         data-sap-ui-componentName="keepcool.sensormanager">
-    </script> 
+    </script>
 </head>
 <body class="sapUiBody sapUiSizeCompact" id="content">
     <div
@@ -119,11 +119,13 @@ You just added an *App* control which has a *pages* aggregation. We will make us
 
 ## Exercise 2.3 - Add Dependencies
 
-You will use several UI5 libraries like `sap.m` or `sap.f` in your application. The central point for configuring your UI5 application is the `manifest.json` file, which is located at `sensormanager/webapp/manifest.json`.
+You will use several UI5 libraries like `sap.m` or `sap.f` in your application. The central point for configuring your UI5 application is the `manifest.json` file, which is located at `sensormanager/webapp/manifest.json`. You can also find the shortcut to it in *Application Info* page
 
-1. Open `sensormanager/webapp/manifest.json`.
+1. Click on `manifest.json` link in the *Application Info* page. If you had closed the *Application Info* page, you can reopen it by using command `Fiori: Open Application Info` from command palette.
+<br><br>![](images/02_02_0025.png)<br><br>
+
 2. Go to the section `sap.ui5`.
-3. Replace the libraries in the `dependencies/libs` section. UI5 will take care of loading all the libraries listed here when your app is started. 
+3. Replace the libraries in the `dependencies/libs` section. UI5 will take care of loading all the libraries listed here when your app is started.
 
 ***sensormanager/webapp/manifest.json***
 
@@ -146,7 +148,7 @@ UI5 comes with a powerful routing API that helps you control the state of your a
 
 Let's adjust the `manifest.json` to enable the routing feature for your newly created view.
 
-1. Open `sensormanager/webapp/manifest.json`.
+1. Open `manifest.json` from *Application Info* page
 2. Go to the section `sap.ui5`.
 3. Replace all content inside the `routing` property with the following content:
 

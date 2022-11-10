@@ -28,7 +28,7 @@ To simulate a source providing sensor data, you'll now add some sensor data to y
 
 After adding the sensor data to your application, you'll need to configure the data service which provides the sensor data.
 
-1. Open the `manifest.json` file located under `sensormanager/webapp`.
+1. Click on `manifest.json` link in the *Application Info* page. If you had closed the *Application Info* page, you can reopen it by using command `Fiori: Open Application Info` from command palette. You can also find the `manifest.json` file located under `sensormanager/webapp`.
 
 2. Go to the section `sap.app`. Here, replace the `dataSources` section as follwowing:
 
