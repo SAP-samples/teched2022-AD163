@@ -5,15 +5,15 @@
 Completing the following exercises will guide you through developing web applications using the SAPUI5 framework and JavaScript.
 
 [Getting Started](exercises/ex0/)<br>
-[Exercise 1 - Project Setup Using Business Application Studio](exercises/ex1/) (*[browse sources](exercises/ex1/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 2 - Basic UI5 Configuration and  View Creation](exercises/ex2/) (*[browse sources](exercises/ex2/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 3 - Show Sensor Content](exercises/ex3/) (*[browse sources](exercises/ex3/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 4 - Introduce Localization](exercises/ex4/) (*[browse sources](exercises/ex4/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 5 - Improve Visualization](exercises/ex5/) (*[browse sources](exercises/ex5/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 6 - Filtering With the IconTabBar](exercises/ex6/) (*[browse sources](exercises/ex6/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 7 - Fragment Containing a SelectDialog](exercises/ex7/) (*[browse sources](exercises/ex7/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 8 - Second View with Navigation](exercises/ex8/) (*[browse sources](exercises/ex8/sensormanager/webapp) - [run app]()*)<br>
-[Exercise 9 - Card with NumericHeader](exercises/ex9/) (*[browse sources](exercises/ex9/sensormanager/webapp) - [run app]()*)
+[Exercise 1 - Project Setup Using Business Application Studio](exercises/ex1/) (*[browse sources](exercises/ex1/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex1/sensormanager/webapp/)*)<br>
+[Exercise 2 - Basic UI5 Configuration and  View Creation](exercises/ex2/) (*[browse sources](exercises/ex2/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex2/sensormanager/webapp/)*)<br>
+[Exercise 3 - Show Sensor Content](exercises/ex3/) (*[browse sources](exercises/ex3/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex3/sensormanager/webapp/)*)<br>
+[Exercise 4 - Introduce Localization](exercises/ex4/) (*[browse sources](exercises/ex4/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex4/sensormanager/webapp/)*)<br>
+[Exercise 5 - Improve Visualization](exercises/ex5/) (*[browse sources](exercises/ex5/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex5/sensormanager/webapp/)*)<br>
+[Exercise 6 - Filtering With the IconTabBar](exercises/ex6/) (*[browse sources](exercises/ex6/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex6/sensormanager/webapp/)*)<br>
+[Exercise 7 - Fragment Containing a SelectDialog](exercises/ex7/) (*[browse sources](exercises/ex7/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex7/sensormanager/webapp/)*)<br>
+[Exercise 8 - Second View with Navigation](exercises/ex8/) (*[browse sources](exercises/ex8/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex8/sensormanager/webapp/)*)<br>
+[Exercise 9 - Card with NumericHeader](exercises/ex9/) (*[browse sources](exercises/ex9/sensormanager/webapp) - [run app](https://sap-samples.github.io/teched2022-AD163/TypeScript/exercises/ex9/sensormanager/webapp/)*)
 
 ## Optional & Additional improvements
 
