@@ -46,7 +46,7 @@ sap.ui.define([
 
 4. Open `sensormanager/css/style.css`.
 
-5. Add the css properties for the `div` element which is created by your thermometer control. In the first step it is just a gray square displaying the temparature.
+5. Add the css properties for the `div` element which is created by your thermometer control. In the first step it is just a gray square displaying the temperature.
 
 ***sensormanager/webapp/css/style.css***
 

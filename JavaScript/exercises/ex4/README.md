@@ -53,7 +53,7 @@ temperatureUnit=°C
 Your UI5 application is prepared for localization. No matter which browser language is configured, your UI5 application currently displays the texts of the `i18n.properties` file.
 Let's provide new language files for English and German.
 
-1. Go to folder `sensormanager/webapp/i18n/` and right-click.
+1. Go to folder `sensormanager/webapp/i18n/` and rightclick.
 
 2. In the popup, click `New File`.
 

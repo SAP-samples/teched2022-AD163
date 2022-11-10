@@ -91,7 +91,7 @@ Replace the content as following:
 
 You just added an *App* control which has a *pages* aggregation. We will make use of this aggregation to add multiple pages for routing later on in this application.
 
-1. To add a new view, right-click on the `sensormanager/webapp/view` folder and select `New File`.
+1. To add a new view, rightclick on the `sensormanager/webapp/view` folder and select `New File`.
 <br><br>![](images/02_02_0010.png)<br><br>
 
 2. Enter `Sensors.view.xml` as file name and confirm.

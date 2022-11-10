@@ -89,7 +89,7 @@ There is also direct access available to the documentation:
 
 ## Exercise 6.3 - Assign the Filtering to the IconTabBar
 
-The filtering logic is written. Next, you need to assign the filtering function to the `select` event of the `sap.m.IconTabBar`.
+The filtering logic has been written. Next, you need to assign the filtering function to the `select` event of the `sap.m.IconTabBar`.
 
 1. Open `sensormanager/webapp/view/Sensors.view.xml`.
 

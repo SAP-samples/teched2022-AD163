@@ -11,7 +11,7 @@ First of all, you need to create the space in your Cloud Foundry environment to 
 1. Open the SAP BTP Trial by opening *https://cockpit.hanatrial.ondemand.com/cockpit/#/home/trial* in a new browser tab and click *Go To Your Trial Account*.
 <br><br>![](images/11_01_0010.png)<br><br>
 
-2. You're redirected to your personal SAP BTP Cockpit where your subaccounts are listed. Click on the prefered subaccount, e.g. *trial*.
+2. You're redirected to your personal SAP BTP Cockpit where your subaccounts are listed. Click on the preferred subaccount, e.g. *trial*.
 <br><br>![](images/11_01_0020.png)<br><br>
 
 3. Click the menu item *Cloud Foundry* and then *Spaces*. Until now, no space was created by you. Click *Create Space*.
@@ -103,6 +103,6 @@ The build step has created a file named `TechEd2020_0.0.1.mtar` located under `m
 
 ## Summary
 
-Hooray! You've completed successfully [Exercise 10C - Deployment to SAP BTP, Cloud Foundry runtime](../ex11/README.md). But this is not the end yet:
+Hooray! You've completed successfully [Exercise 10C - Deployment to SAP BTP, Cloud Foundry runtime](../ex11/README.md).
 
 Let's take a look at the additional exercises [Additional exercises](../../)
