@@ -1,5 +1,5 @@
-[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex1)
-[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/ex1/sensormanager/webapp/)
+[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](sensormanager)
+[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/JavaScript/exercises/ex1/sensormanager/webapp/)
 
 # Exercise 1 - Project Setup Using SAP Business Application Studio
 

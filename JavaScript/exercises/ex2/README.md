@@ -1,5 +1,6 @@
-[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](../../../../tree/code/ex2)
-[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/ex2/sensormanager/webapp/)
+[![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](sensormanager)
+[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/JavaScript/exercises/ex2/sensormanager/webapp/)
+
 
 # Exercise 2 - Basic UI5 Configuration and View Creation
 
