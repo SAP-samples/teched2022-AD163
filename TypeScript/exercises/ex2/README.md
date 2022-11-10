@@ -182,6 +182,22 @@ Let's adjust the `manifest.json` to enable the routing feature for your newly cr
         }
 ````
 
+We changed the *routing* section in the sap.ui5 part of the descriptor. There are three subsections that define the routing and navigation structure of the app:
+
+`config`
+
+This section contains the global router configuration and default values that apply for all routes and targets. We define the router class that we want to use and where our views are located in the app. To load and display views automatically, we also specify which control is used to display the pages and what aggregation should be filled when a new page is displayed.
+
+`routes`
+
+Each route defines a name, a pattern, and one or more targets to navigate to when the route has been hit. The pattern is basically the URL part that matches to the route, we define two routes for our app. The first one is a default route that will show the overview page with the content from the previous steps, and the second is the detail route with the URL pattern detail that will show a new page.
+
+`targets`
+
+A target defines a view that is displayed, it is associated with one or more routes and it can also be displayed manually from within the app. Whenever a target is displayed, the corresponding view is loaded and shown in the app. In our app we simply define two targets with a view name that corresponds to the target name.
+
+<br>
+
 4. Open the tab with the application preview and reload it. The application is being updated, and you can see an empty `sap.m.IconTabBar`.
   * [Optional] If you have closed the tab with the application preview accidentally, click in the header toolbar on *View* and then select *Find Command...*. Enter here *Ports: Preview* and confirm. A new tab with the application preview opens.</ul>
 <br><br>![](images/02_02_0030.png)<br><br>
