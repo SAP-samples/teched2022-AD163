@@ -1,6 +1,4 @@
 [![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](sensormanager)
-[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/TypeScript/exercises/ex7/sensormanager/webapp/)
-
 # Exercise 7 - Fragment Containing a SelectDialog
 
 Not all the icehouse data might be relevant for every employee of your customer. You should add some kind of basic personalization to the application. You can do this by providing a dialog in which users can select only the icehouse clients relevant for them.

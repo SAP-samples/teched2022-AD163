@@ -1,6 +1,4 @@
 [![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](sensormanager)
-[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/TypeScript/exercises/ex3/sensormanager/webapp/)
-
 # Exercise 3 - Show Sensor Content
 
 In this exercise you'll add a local data service to the application and display the data on the enhanced UI5 view.

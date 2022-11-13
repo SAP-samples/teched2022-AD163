@@ -1,5 +1,4 @@
 [![solution](https://flat.badgen.net/badge/solution/available/green?icon=github)](sensormanager)
-[![demo](https://flat.badgen.net/badge/demo/deployed/blue?icon=chrome)](https://SAP-samples.github.io/teched2022-AD163/TypeScript/exercises/ex8/sensormanager/webapp/)
 
 # Exercise 8 - Add a Second View with Navigation
 
