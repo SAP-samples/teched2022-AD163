@@ -22,11 +22,3 @@ Already finished? Here are some additional improvements for the application, the
 [Exercise 10A  - Add a chart with DataBinding](exercises/ex10_A/)<br>
 [Exercise 10B  - Develop your own Control](exercises/ex10_B/)<br>
 [Exercise 10C  - Deployment to SAP BTP - Cloud Foundry runtime](exercises/ex10_C/)
-
-## Further tutorials and lectures regarding UI5
-
-In case you're interested in advanced topics after completing all the above exercises, here are some additional tutorials to deepen your knowledge in application development leveraging UI5:
-
-[SAP Blog to the Flexible Programming Model](https://blogs.sap.com/2022/06/08/how-to-create-an-sap-fiori-app-using-sap-fiori-elements-sapui5-freestyle-or-a-mix-of-both-with-the-flexible-programming-model/)<br>
-[CAP & UI5 development in an example application](https://github.com/SAP-samples/ui5-cap-event-app)<br>
-[UI5 and TypeScript](https://github.com/SAP-samples/ui5-typescript-tutorial)<br>
