@@ -13,7 +13,7 @@ Your customer "Keep Cool, Inc." is an operator of several icehouses across the c
 
 After completing these steps you'll have created your first UI5 application.
 
-1. Click on *Files & Folders& on the *Welcome* page to open the workspace.
+1. Click on *Files & Folders* on the *Welcome* page to open the workspace.
 <br><br>![](images/01_01_0009.png)<br><br>
 
 1. Click on *Start from template* on the *Welcome* page.
