@@ -12,9 +12,6 @@ Your customer "Keep Cool, Inc." is an operator of several icehouses across the c
 
 After completing these steps you'll have created your first UI5 application.
 
-1. Click on *Files & Folders* on the *Welcome* page to open the workspace.
-<br><br>![](images/01_01_0009.png)<br><br>
-
 1. Click on *Start from template* on the *Welcome* page.
     * [Optional] If you have closed the *Welcome* page accidentally, click in the header toolbar on *View*, and select *Find Command...*  Enter *Welcome*.</ul>
 <br><br>![](images/01_01_0010.png)<br><br>
@@ -37,21 +34,25 @@ After completing these steps you'll have created your first UI5 application.
     1. Enter *sensormanager* as *Module name*.
     2. Choose *Sensor Manager* as *Application title*.
     3. Enter *keepcool* as your namespace.
-    4. You can leave the description
+    4. You can keep the description default.
     5. Leave the Project folder path as */home/user/projects* .
     6. Select the latest available UI5 release
     7. Select *Add deployment configuration*
     8. Select *Yes* to configure the advanced options
     9. Set *Enable TypeScript* to *Yes* to implement the application using TypeScript.
     10. Click *Next*. </ol>
-<br>![](images/01_01_0016.png)<br><br><ol>
+<br>![](images/01_01_0016.png)<br><br>
+<br>![](images/01_01_0016b.png)<br><br>
+<ol>
 
 7. In the next step, select *Cloud Foundry* as target, leave the Destination name to "None" and make sure that the *Yes* is checked for adding the application to the application router and click *Finish*.  </ul>
 <br><br>![](images/01_01_0017.png)<br><br>
 
-8. The project is generated, and a notification window appears in the lower right corner which will inform you when the project has been generated. Wait for the message that the project has been generated!
+8. The project is generated, and a notification window appears which will inform you when the project has been generated. Wait for the message that the project has been generated and press *Open folder*.
 
-9.  Once the project has been generated, the *Application Info* page opens to show you an overview of the project and the list of functions you can do with the project.
+<br><br>![](images/01_01_0018.png)<br><br>
+
+9. Once the project has been generated, the *Application Info* page opens to show you an overview of the project and the list of functions you can do with the project. In addition you can open the menu any time using the command (CTRL + Shift + P) *Fiori: Open application Info*.
 
 <br><br>![](images/01_01_0019.png)<br><br>
 
