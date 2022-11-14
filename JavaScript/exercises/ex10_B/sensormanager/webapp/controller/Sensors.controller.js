@@ -116,12 +116,11 @@ sap.ui.define([
             },
 
             formatThermometerColor: function(iTemperature) {
-                var oThreshold = this.getSensorModel().getProperty("/threshold");
-                if (!oThreshold) {
+                if (!this.oThreshold) {
                     return "black";
-                } else if (iTemperature < oThreshold.warm) {
+                } else if (iTemperature < this.oThreshold.Warm) {
                     return "#1873B4"; // less obtrusive than the standard "blue"
-                } else if (iTemperature >= oThreshold.warm && iTemperature < oThreshold.hot) {
+                } else if (iTemperature >= this.oThreshold.Warm && iTemperature < this.oThreshold.Hot) {
                     return "orange";
                 } else {
                     return "red";

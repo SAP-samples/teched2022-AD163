@@ -111,12 +111,12 @@ export default class Thermometer extends UI5Control {
 ***sensormanager/webapp/controller/Sensors.controller.xml***
 
 ````js
-            formatThermometerColor(temperature: number) {
-                if (!Threshold) {
+            formatThermometerColor: function(iTemperature) {
+                if (!this.oThreshold) {
                     return "black";
-                } else if (temperature < Threshold.Warm) {
+                } else if (iTemperature < this.oThreshold.Warm) {
                     return "#1873B4"; // less obtrusive than the standard "blue"
-                } else if (temperature >= Threshold.Warm && temperature < Threshold.Hot) {
+                } else if (iTemperature >= this.oThreshold.Warm && iTemperature < this.oThreshold.Hot) {
                     return "orange";
                 } else {
                     return "red";

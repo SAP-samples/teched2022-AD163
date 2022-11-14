@@ -44,10 +44,10 @@
                                     <Title text="{sensorModel>location}"/>
                                     <Label text="{i18n>distanceLabel}:"/>
                                     </VBox>
-
+                                   
                                     <cc:Thermometer
-                                    value="{sensorModel>temperature/value}"
-                                    color="{path: 'sensorModel>temperature/value', formatter:'.formatThermometerColor'}"
+                                    value="{sensorModel>temperature}"
+                                    color="{path: 'sensorModel>temperature', formatter:'.formatThermometerColor'}"
                                     class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
 
                                     <!--core:Icon
