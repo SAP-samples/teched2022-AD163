@@ -50,8 +50,6 @@ After completing these steps you'll have created your first UI5 application.
 
 8. The project is generated, and a notification window appears in the lower right corner which will inform you when the project has been generated. Wait for the message that the project has been generated!
 
-<br><br>![](images/01_01_0018.png)<br><br>
-
 9. Once the project has been generated, the *Application Info* page opens to show you an overview of the project and the list of functions you can do with the project. In addition you can open the menu any time using the command (CTRL + Shift + P) *Fiori: Open application Info*.
 
 <br><br>![](images/01_01_0019.png)<br><br>
