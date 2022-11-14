@@ -20,6 +20,9 @@
                                 <Title text="{sensorModel>location}"/>
                             </CustomListItem>
                         </f:items>
+                        <f:noData>
+                            <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
+                        </f:noData>
                     </f:GridList>
                 </content>
             </IconTabBar>

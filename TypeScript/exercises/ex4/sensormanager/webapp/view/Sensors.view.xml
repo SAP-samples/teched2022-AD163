@@ -11,7 +11,7 @@
                     <f:GridList
                         id="sensorsList"
                         items="{path: 'sensorModel>/sensors', sorter: {path:'customer', group:true, descending: false}}"
-                        noDataText="{i18n>noSensorDataText}">
+                        noDataText="No sensors">
                         <f:customLayout>
                             <grid:GridBoxLayout/>
                         </f:customLayout>
@@ -20,6 +20,9 @@
                                 <Title text="{sensorModel>location}"/>
                             </CustomListItem>
                         </f:items>
+                        <f:noData>
+                            <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
+                        </f:noData>
                     </f:GridList>
                 </content>
             </IconTabBar>

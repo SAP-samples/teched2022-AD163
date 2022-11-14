@@ -12,15 +12,14 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
-      "version": "1.7.5-pre-20220915110027-6f6c8d062.0",
-      "toolsId": "fc9f5380-555f-4ca9-a20b-e57423ccb8ab"
+      "version": "1.8.1",
+      "toolsId": "8df9464e-328f-4a3e-88de-d04a54b4aaa3"
     },
     "dataSources": {
       "sensorSource": {
-        "type": "JSON",
-        "uri": "./localService/sensors.json"
-    }
-
+          "type": "JSON",
+          "uri": "./localService/sensors.json"
+      }
     }
   },
   "sap.ui": {
@@ -40,9 +39,9 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
-      "minUI5Version": "1.93.0",
+      "minUI5Version": "1.106.0",
       "libs": {
           "sap.ui.core": {},
           "sap.ui.layout": {},
@@ -63,11 +62,11 @@
             "supportedLocales": ["de", "en"],
             "fallbackLocale": "en"
         }
-    },
+      },
       "sensorModel": {
         "type": "sap.ui.model.json.JSONModel",
         "dataSource": "sensorSource"
-    }
+      }
     },
     "resources": {
       "css": [

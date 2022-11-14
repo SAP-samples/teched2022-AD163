@@ -1,5 +1,5 @@
 import BaseComponent from "sap/ui/core/UIComponent";
-import { createDeviceModel } from "keepcool/sensormanager/model/models";
+import { createDeviceModel } from "./model/models";
 
 /**
  * @namespace keepcool.sensormanager

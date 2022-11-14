@@ -4,7 +4,7 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
     xmlns:card="sap.f.cards">
-  <Page 
+    <Page 
         id="SensorStatusPage"
         title="{i18n>titleSensorStatus}"
         showNavButton="true"

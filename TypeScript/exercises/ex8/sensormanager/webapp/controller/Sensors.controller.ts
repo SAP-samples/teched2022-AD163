@@ -10,12 +10,12 @@ import Event from "sap/ui/base/Event";
 import SelectDialog from "sap/m/SelectDialog";
 import Control from "sap/ui/core/Control";
 import Fragment from "sap/ui/core/Fragment";
-import ListItem from "sap/ui/core/ListItem";
-import StandardListItem from "sap/ui/webc/main/StandardListItem";
+import StandardListItem from "sap/m/StandardListItem";
+import UIComponent from "sap/ui/core/UIComponent";
 
 enum Threshold {
-    warm = 4,
-    hot = 5
+    Warm = 4,
+    Hot = 5
 }
 
 /**
@@ -36,16 +36,14 @@ export default class Sensors extends Controller {
 
     public getSensorModel(): JSONModel {
         const ownerComp = this.getOwnerComponent();
-        const oModel = (ownerComp?.getModel("sensorModel") as JSONModel);
-        return oModel;
+        const model = (ownerComp?.getModel("sensorModel") as JSONModel);
+        return model;
     }
 
-    formatIconColor(temperature: number): IconColor {
-        if (!Threshold) {
-            return IconColor.Neutral;
-        } else if (temperature < Threshold.warm) {
-            return IconColor.Default;
-        } else if (temperature >= Threshold.warm && temperature < Threshold.hot) {
+    formatIconColor(temperature: number): IconColor|string {
+        if (temperature < Threshold.Warm) {
+            return "#0984e3";
+        } else if (temperature >= Threshold.Warm && temperature < Threshold.Hot) {
             return IconColor.Critical;
         } else {
             return IconColor.Negative;
@@ -57,20 +55,20 @@ export default class Sensors extends Controller {
 
     onSensorSelect(event: Event): void {
 
-        const oBinding = this.getView()?.byId("sensorsList")?.getBinding("items");
-        const sKey = (event.getParameter("key") as string);
+        const listBinding = this.getView()?.byId("sensorsList")?.getBinding("items") as ListBinding;
+        const key = (event.getParameter("key") as string);
 
-        if (sKey === "Cold") {
-            this.statusFilters = [new Filter("temperature", "LT", Threshold.warm, false)];
-        } else if (sKey === "Warm") {
-            this.statusFilters = [new Filter("temperature", "BT", Threshold.warm, Threshold.hot)];
-        } else if (sKey === "Hot") {
-            this.statusFilters = [new Filter("temperature", "GT", Threshold.hot, false)];
+        if (key === "Cold") {
+            this.statusFilters = [new Filter("temperature", "LT", Threshold.Warm, false)];
+        } else if (key === "Warm") {
+            this.statusFilters = [new Filter("temperature", "BT", Threshold.Warm, Threshold.Hot)];
+        } else if (key === "Hot") {
+            this.statusFilters = [new Filter("temperature", "GT", Threshold.Hot, false)];
         } else {
             this.statusFilters = [];
         }
 
-        (oBinding as ListBinding).filter(this.statusFilters.concat(this.customFilters));
+        listBinding.filter(this.statusFilters.concat(this.customFilters));
     }
 
     private dialog: Promise<SelectDialog>;
@@ -94,31 +92,31 @@ export default class Sensors extends Controller {
             });
         }
 
-        this.dialog.then(function(oDialog){
-            oDialog.open("");
-        }).catch(function(oErr: Error){
-            MessageToast.show(oErr.message);
-        })
+        this.dialog.then(function(dialog){
+            dialog.open("");
+        }).catch(function(err: Error){
+            MessageToast.show(err.message);
+        });
     }
 
     onCustomerSelectChange(event: Event): void {
-        const sValue = (event.getParameter("value") as string);
-        const oFilter = new Filter("name", "Contains", sValue);
-        const oBinding = (event.getSource() as Control).getBinding("items");
-        (oBinding as ListBinding).filter([oFilter]);
+        const value = (event.getParameter("value") as string);
+        const filter = new Filter("name", "Contains", value);
+        const listBinding = (event.getSource() as Control).getBinding("items") as ListBinding;
+        listBinding.filter([filter]);
     }
 
     onCustomerSelectConfirm(event: Event): void {
-        const aSelectedItems = (event.getParameter("selectedItems") as ListItem[]);
-        const oBinding = this.getView()?.byId("sensorsList")?.getBinding("items");
-        this.customFilters = aSelectedItems.map(function(item: StandardListItem) {
+        const selectedItems = (event.getParameter("selectedItems") as StandardListItem[]);
+        const listBinding = this.getView()?.byId("sensorsList")?.getBinding("items") as ListBinding;
+        this.customFilters = selectedItems.map(function(item: StandardListItem) {
             return new Filter("customer", "EQ", item.getTitle());
         });
-        (oBinding as ListBinding).filter(this.customFilters.concat(this.statusFilters));
+        listBinding.filter(this.customFilters.concat(this.statusFilters));
     }
 
     navToSensorStatus(event: Event): void {
-        const sensorIndex = (event.getSource() as Control).getBindingContext("sensorModel")?.getProperty("index");
+        const sensorIndex = (event.getSource() as Control).getBindingContext("sensorModel")?.getProperty("index") as number;
         (this.getOwnerComponent() as UIComponent).getRouter().navTo("RouteSensorStatus", {index: sensorIndex});
     }
 }

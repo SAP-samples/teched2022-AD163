@@ -9,8 +9,8 @@ import ListBinding from "sap/ui/model/ListBinding";
 import Event from "sap/ui/base/Event";
 
 enum Threshold {
-    warm = 4,
-    hot = 5
+    Warm = 4,
+    Hot = 5
 }
 
 /**
@@ -31,16 +31,14 @@ export default class Sensors extends Controller {
 
     public getSensorModel(): JSONModel {
         const ownerComp = this.getOwnerComponent();
-        const oModel = (ownerComp?.getModel("sensorModel") as JSONModel);
-        return oModel;
+        const model = (ownerComp?.getModel("sensorModel") as JSONModel);
+        return model;
     }
 
-    formatIconColor(temperature: number): IconColor {
-        if (!Threshold) {
-            return IconColor.Neutral;
-        } else if (temperature < Threshold.warm) {
-            return IconColor.Default;
-        } else if (temperature >= Threshold.warm && temperature < Threshold.hot) {
+    formatIconColor(temperature: number): IconColor|string {
+        if (temperature < Threshold.Warm) {
+            return "#0984e3";
+        } else if (temperature >= Threshold.Warm && temperature < Threshold.Hot) {
             return IconColor.Critical;
         } else {
             return IconColor.Negative;
@@ -52,19 +50,19 @@ export default class Sensors extends Controller {
 
     onSensorSelect(event: Event): void {
 
-        const oBinding = this.getView()?.byId("sensorsList")?.getBinding("items");
-        const sKey = (event.getParameter("key") as string);
+        const listBinding = this.getView()?.byId("sensorsList")?.getBinding("items") as ListBinding;
+        const key = (event.getParameter("key") as string);
 
-        if (sKey === "Cold") {
-            this.statusFilters = [new Filter("temperature", "LT", Threshold.warm, false)];
-        } else if (sKey === "Warm") {
-            this.statusFilters = [new Filter("temperature", "BT", Threshold.warm, Threshold.hot)];
-        } else if (sKey === "Hot") {
-            this.statusFilters = [new Filter("temperature", "GT", Threshold.hot, false)];
+        if (key === "Cold") {
+            this.statusFilters = [new Filter("temperature", "LT", Threshold.Warm, false)];
+        } else if (key === "Warm") {
+            this.statusFilters = [new Filter("temperature", "BT", Threshold.Warm, Threshold.Hot)];
+        } else if (key === "Hot") {
+            this.statusFilters = [new Filter("temperature", "GT", Threshold.Hot, false)];
         } else {
             this.statusFilters = [];
         }
 
-        (oBinding as ListBinding).filter(this.statusFilters);
+        listBinding.filter(this.statusFilters);
     }
 }

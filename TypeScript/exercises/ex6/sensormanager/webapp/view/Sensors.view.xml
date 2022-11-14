@@ -8,9 +8,13 @@
     displayBlock="true">
     <Page id="page" title="{i18n>title}">
         <content>
-             <IconTabBar id="iconTabBar" select=".onSensorSelect" class="sapUiResponsiveContentPadding">
+            <IconTabBar id="iconTabBar" select=".onSensorSelect" class="sapUiResponsiveContentPadding">
                 <items>
-                    <IconTabFilter showAll="true" text="{i18n>msgFilterAll}" key="All"/>
+                    <IconTabFilter
+                        showAll="true"
+                        text="{i18n>msgFilterAll}"
+                        key="All"
+                        count="{=${sensorModel>/sensors}.length}"/>
                     <IconTabSeparator/>
                     <IconTabFilter icon="sap-icon://fridge" iconColor="Default" text="{i18n>msgFilterCold}" key="Cold"/>
                     <IconTabFilter icon="sap-icon://blur" iconColor="Critical" text="{i18n>msgFilterWarm}" key="Warm"/>
@@ -20,7 +24,7 @@
                     <f:GridList
                         id="sensorsList"
                         items="{path: 'sensorModel>/sensors', sorter: {path:'customer', group:true, descending: false}}"
-                        noDataText="{i18n>noSensorDataText}">
+                        noDataText="No sensors">
                         <f:customLayout>
                             <grid:GridBoxLayout/>
                         </f:customLayout>
@@ -53,6 +57,9 @@
                                 </HBox>
                             </CustomListItem>
                         </f:items>
+                        <f:noData>
+                            <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
+                        </f:noData>
                     </f:GridList>
                 </content>
             </IconTabBar>
