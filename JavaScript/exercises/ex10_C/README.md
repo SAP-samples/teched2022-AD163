@@ -85,9 +85,9 @@ Now it's time to build your application. Yeah!
 
 ## Exercise 10C.7 - Deploy Your Application
 
-The build step has created a file named `TechEd2020_0.0.1.mtar` located under `mta_archives`. This file contains your build.
+The build step has created a file named `keepcool-sensormanager_0.0.1.mtar` located under `mta_archives`. This file contains your build.
 
-1. Right-click `mta_archives/TechEd2020_0.0.1.mtar` and select *Deploy MTA Archive*. Deployment starts.
+1. Right-click `mta_archives/keepcool-sensormanager_0.0.1.mtar` and select *Deploy MTA Archive*. Deployment starts.
 <br><br>![](images/11_07_0010.png)<br><br>
 
 2. You are asked for the organisation and space again. Choose your trial account as organisation and the *ui5-apps* space you just created.
