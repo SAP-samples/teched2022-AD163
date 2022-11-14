@@ -12,7 +12,6 @@ In this session, you will learn about developing web applications with SAPUI5. Y
 
 The requirements to follow the exercises in this repository are:
 - Get a free trial account on SAP BTP; see this [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html).
-- Enable Cloud Foundry and create an organization e.g. *ui5-cloud-foundry*; see the [help portal](https://help.sap.com/viewer/a96b1df8525f41f79484717368e30626/Cloud/en-US/dc18bac42270468d84b6c030a668e003.html).
 - Set Up SAP Business Application Studio for development; see this [tutorial](https://developers.sap.com/tutorials/appstudio-onboarding.html).
 - Be excited about the power of SAP technologies to make your developer life easier.
 
