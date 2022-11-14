@@ -114,9 +114,9 @@ export default class Thermometer extends UI5Control {
             formatThermometerColor(temperature: number) {
                 if (!Threshold) {
                     return "black";
-                } else if (temperature < Threshold.warm) {
+                } else if (temperature < Threshold.Warm) {
                     return "#1873B4"; // less obtrusive than the standard "blue"
-                } else if (temperature >= Threshold.warm && temperature < Threshold.hot) {
+                } else if (temperature >= Threshold.Warm && temperature < Threshold.Hot) {
                     return "orange";
                 } else {
                     return "red";

@@ -24,17 +24,15 @@ sap.ui.define([
             },
 
             oThreshold: {
-                warm: 4,
-                hot: 5
+                Warm: 4,
+                Hot: 5
             },
 
             formatIconColor: function(iTemperature) {
                 
-                if (!this.oThreshold) {
-                    return IconColor.Neutral;
-                } else if (iTemperature < this.oThreshold.warm) {
-                    return IconColor.Default;
-                } else if (iTemperature >= this.oThreshold.warm && iTemperature < this.oThreshold.hot) {
+                if (iTemperature < this.oThreshold.Warm) {
+                    return "#0984e3";
+                } else if (iTemperature >= this.oThreshold.Warm && iTemperature < this.oThreshold.Hot) {
                     return IconColor.Critical;
                 } else {
                     return IconColor.Negative;

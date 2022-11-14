@@ -60,6 +60,9 @@
                         <f:noData>
                             <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
                         </f:noData>
+                        <f:noData>
+                            <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
+                        </f:noData>
                     </f:GridList>
                 </content>
             </IconTabBar>

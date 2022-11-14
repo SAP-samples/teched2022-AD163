@@ -19,6 +19,6 @@ Completing the following exercises will guide you through developing web applica
 
 Already finished? Here are some additional improvements for the application, they are unrelated and can be done separately in any order you prefer:<br>
 
-[Exercise 10A  - Add a chart with DataBinding](exercises/ex10_A/)<br>
-[Exercise 10B  - Develop your own Control](exercises/ex10_B/)<br>
+[Exercise 10A  - Add a chart with DataBinding](exercises/ex10_A/) (*[browse sources](exercises/ex10_A/sensormanager/webapp)*)<br>
+[Exercise 10B  - Develop your own Control](exercises/ex10_B/) (*[browse sources](exercises/ex10_B/sensormanager/webapp)*)<br>
 [Exercise 10C  - Deployment to SAP BTP - Cloud Foundry runtime](exercises/ex10_C/)
