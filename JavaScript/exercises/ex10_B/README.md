@@ -112,9 +112,9 @@ sap.ui.define([
                 var oThreshold = this.getSensorModel().getProperty("/threshold");
                 if (!oThreshold) {
                     return "black";
-                } else if (iTemperature < oThreshold.warm) {
+                } else if (iTemperature < oThreshold.Warm) {
                     return "#1873B4"; // less obtrusive than the standard "blue"
-                } else if (iTemperature >= oThreshold.warm && iTemperature < oThreshold.hot) {
+                } else if (iTemperature >= oThreshold.Warm && iTemperature < oThreshold.Hot) {
                     return "orange";
                 } else {
                     return "red";

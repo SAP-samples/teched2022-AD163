@@ -25,14 +25,14 @@ sap.ui.define([
         },
 
         oThreshold: {
-            warm: 4,
-            hot: 5
+            Warm: 4,
+            Hot: 5
         },
 
         formatValueColor: function (iTemperature) {
-            if (iTemperature < this.oThreshold.warm) {
+            if (iTemperature < this.oThreshold.Warm) {
                 return ValueColor.Neutral;
-            } else if (iTemperature >= this.oThreshold.warm && iTemperature < this.oThreshold.hot) {
+            } else if (iTemperature >= this.oThreshold.Warm && iTemperature < this.oThreshold.Hot) {
                 return ValueColor.Critical;
             } else {
                 return ValueColor.Error;

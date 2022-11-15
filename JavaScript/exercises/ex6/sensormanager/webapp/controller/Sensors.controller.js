@@ -44,11 +44,11 @@ sap.ui.define([
                     sKey = oEvent.getParameter("key");
 
                 if (sKey === "Cold") {
-                    this._aStatusFilters = [new Filter("temperature", "LT", this.oThreshold.warm, false)];
+                    this._aStatusFilters = [new Filter("temperature", "LT", this.oThreshold.Warm, false)];
                 } else if (sKey === "Warm") {
-                    this._aStatusFilters = [new Filter("temperature", "BT", this.oThreshold.warm, this.oThreshold.hot, false)];
+                    this._aStatusFilters = [new Filter("temperature", "BT", this.oThreshold.Warm, this.oThreshold.Hot, false)];
                 } else if (sKey === "Hot") {
-                    this._aStatusFilters = [new Filter("temperature", "GT", this.oThreshold.hot, false)];
+                    this._aStatusFilters = [new Filter("temperature", "GT", this.oThreshold.Hot, false)];
                 } else {
                     this._aStatusFilters = [];
                 }
