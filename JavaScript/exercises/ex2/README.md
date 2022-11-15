@@ -132,7 +132,7 @@ You will use several UI5 libraries like `sap.m` or `sap.f` in your application. 
 
 ````json
         "dependencies": {
-            "minUI5Version": "1.93.0",
+            ...
             "libs": {
                 "sap.ui.core": {},
                 "sap.ui.layout": {},
