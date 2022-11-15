@@ -114,9 +114,6 @@ After configuring the data service, it's now time to enrich your `Sensors.view.x
                         <f:noData>
                             <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
                         </f:noData>
-                        <f:noData>
-                            <IllustratedMessage enableVerticalResponsiveness="true" illustrationType="sapIllus-EmptyList"/>
-                        </f:noData>
                     </f:GridList>
 
 ````
