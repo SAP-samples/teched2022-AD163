@@ -111,17 +111,17 @@ export default class Thermometer extends UI5Control {
 ***sensormanager/webapp/controller/Sensors.controller.xml***
 
 ````js
-            formatThermometerColor: function(iTemperature) {
-                if (!this.oThreshold) {
-                    return "black";
-                } else if (iTemperature < this.oThreshold.Warm) {
-                    return "#1873B4"; // less obtrusive than the standard "blue"
-                } else if (iTemperature >= this.oThreshold.Warm && iTemperature < this.oThreshold.Hot) {
-                    return "orange";
-                } else {
-                    return "red";
-                }
-            },
+	    formatThermometerColor(temperature: number) {
+		if (!Threshold) {
+		    return "black";
+		} else if (temperature < Threshold.Warm) {
+		    return "#1873B4"; // less obtrusive than the standard "blue"
+		} else if (temperature >= Threshold.Warm && temperature < Threshold.Hot) {
+		    return "orange";
+		} else {
+		    return "red";
+		}
+	    }
 ````
 
 8. Reload the preview page and you see the first simple version of your thermometer control. You may have noticed that the calculated color was not yet written to the HTML in the control renderer, so the boxes are all colored the same, as defined in the CSS.
