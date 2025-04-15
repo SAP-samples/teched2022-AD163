@@ -9,15 +9,14 @@
     "sapui5"
   ],
   "main": "webapp/index.html",
-  "dependencies": {},
   "devDependencies": {
-    "@ui5/cli": "^2.14.1",
     "@sap/ux-ui5-tooling": "1",
     "@sapui5/ts-types-esm": "~1.102.9",
-    "ui5-tooling-transpile": "^0.2.0",
-    "typescript": "^4.6.3",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
-    "@typescript-eslint/parser": "^5.17.0"
+    "@typescript-eslint/parser": "^5.17.0",
+    "@ui5/cli": "^4.0.8",
+    "typescript": "^4.6.3",
+    "ui5-tooling-transpile": "^0.2.0"
   },
   "scripts": {
     "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#keepcoolsensormanager-display\"",
